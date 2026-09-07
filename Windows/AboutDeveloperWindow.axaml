@@ -1,0 +1,302 @@
+﻿<Window x:Class="Black_Hole_Cross.AboutDeveloperWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:services="using:Black_Hole_Cross.Services"
+        Title="О создателе • Black Hole"
+        Height="600" Width="700"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Background="#1A1A2E"
+        x:CompileBindings="False">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static services:LocalizationService.Instance}"/>
+    </Window.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4050B0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#5060C0"/>
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <!-- Космический фон -->
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                    <GradientStop Color="#000000" Offset="0"/>
+                    <GradientStop Color="#0A0A2A" Offset="0.3"/>
+                    <GradientStop Color="#1A1A4A" Offset="0.6"/>
+                    <GradientStop Color="#000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+            <StackPanel>
+                <!-- Главная карточка с аватаром -->
+                <Border CornerRadius="20" Padding="30" Margin="0,0,0,25"
+                        Background="#1A1A2E"
+                        BorderThickness="2" BorderBrush="#4050B0"
+                        BoxShadow="0 0 40 0 #4050B0">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <!-- Аватар -->
+                            <Border Width="90" Height="90" CornerRadius="45"
+                                    Background="#4050B0" Margin="0,0,25,0"
+                                    BorderThickness="3" BorderBrush="#00FF88">
+                                <Viewbox Width="45" Height="45">
+                                    <TextBlock Text="👨‍💻" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </Border>
+
+                            <!-- Имя и описание -->
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Gleb (Mofikss Mofikssiniy)"
+                                           FontSize="26" FontWeight="Bold"
+                                           Foreground="White"/>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [DeveloperTitle]}"
+                                               Foreground="#A0A0FF" FontSize="13"
+                                               Margin="0,2,0,0"/>
+                                    <Border Background="#00FF88" CornerRadius="10"
+                                            Padding="8,4" Margin="0,8,0,0">
+                                        <TextBlock Text="{Binding [DeveloperTagline]}"
+                                                   Foreground="Black" FontSize="10"
+                                                   FontWeight="Bold"/>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Основная история -->
+                        <Border Background="#2A2A3A" CornerRadius="12" Padding="20"
+                                Margin="0,0,0,15">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding [StoryTitle]}"
+                                           Foreground="#FFD700" FontSize="14"
+                                           FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="{Binding [StoryText]}"
+                                           Foreground="#CCCCCC" FontSize="12"
+                                           TextWrapping="Wrap" LineHeight="20"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Черты характера -->
+                        <WrapPanel Margin="0,0,0,10" HorizontalAlignment="Center">
+                            <Border Background="#4050B0" CornerRadius="15" Padding="10,6" Margin="3">
+                                <TextBlock Text="{Binding [Trait1]}" Foreground="White" FontSize="10"/>
+                            </Border>
+                            <Border Background="#40B050" CornerRadius="15" Padding="10,6" Margin="3">
+                                <TextBlock Text="{Binding [Trait2]}" Foreground="White" FontSize="10"/>
+                            </Border>
+                            <Border Background="#FFA500" CornerRadius="15" Padding="10,6" Margin="3">
+                                <TextBlock Text="{Binding [Trait3]}" Foreground="White" FontSize="10"/>
+                            </Border>
+                            <Border Background="#B04080" CornerRadius="15" Padding="10,6" Margin="3">
+                                <TextBlock Text="{Binding [Trait4]}" Foreground="White" FontSize="10"/>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- История создания Black Hole -->
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,20"
+                        Background="#1A1A2E"
+                        BorderThickness="1" BorderBrush="#404040">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Viewbox Width="24" Height="24" Margin="0,0,12,0">
+                                <TextBlock Text="🚀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <TextBlock Text="{Binding [ProjectTitle]}"
+                                       FontSize="18" FontWeight="Bold"
+                                       Foreground="White"/>
+                        </StackPanel>
+
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="20">
+                            <TextBlock Text="{Binding [ProjectText]}"
+                                       Foreground="#CCCCCC" FontSize="11"
+                                       TextWrapping="Wrap" LineHeight="18"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Философия -->
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,20"
+                        Background="#1A1A2E"
+                        BorderThickness="1" BorderBrush="#404040">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Viewbox Width="24" Height="24" Margin="0,0,12,0">
+                                <TextBlock Text="💭" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <TextBlock Text="{Binding [PhilosophyTitle]}"
+                                       FontSize="18" FontWeight="Bold"
+                                       Foreground="White"/>
+                        </StackPanel>
+
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="20">
+                            <TextBlock Text="{Binding [PhilosophyText]}"
+                                       Foreground="#CCCCCC" FontSize="11"
+                                       TextWrapping="Wrap" LineHeight="18"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Навыки и технологии -->
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,20"
+                        Background="#1A1A2E"
+                        BorderThickness="1" BorderBrush="#404040">
+                    <StackPanel>
+                        <TextBlock Text="{Binding [SkillsTitle]}"
+                                   FontSize="18" FontWeight="Bold"
+                                   Foreground="White" Margin="0,0,0,15"/>
+
+                        <TextBlock Text="{Binding [SkillsDescription]}"
+                                   Foreground="#CCCCCC" FontSize="11"
+                                   Margin="0,0,0,10"/>
+
+                        <WrapPanel Margin="0,0,0,15" HorizontalAlignment="Center">
+                            <Border Background="#4050B0" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text="C# / Avalonia" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <Border Background="#40B050" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text=".NET 9.0+" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <Border Background="#B08040" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text="XAML" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <Border Background="#B04080" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text="Cross-Platform" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <Border Background="#FF6B6B" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text="UI/UX Design" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                            <Border Background="#9370DB" CornerRadius="8" Padding="12,8" Margin="4">
+                                <TextBlock Text="Git" Foreground="White" FontSize="10" FontWeight="SemiBold"/>
+                            </Border>
+                        </WrapPanel>
+
+                        <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,10,0,0">
+                            <TextBlock Text="{Binding [SkillsText]}"
+                                       Foreground="#87CEEB" FontSize="10"
+                                       TextWrapping="Wrap" LineHeight="16"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Мечты и планы -->
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,20"
+                        Background="#1A1A2E"
+                        BorderThickness="1" BorderBrush="#404040">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Viewbox Width="24" Height="24" Margin="0,0,12,0">
+                                <TextBlock Text="🌠" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <TextBlock Text="{Binding [DreamsTitle]}"
+                                       FontSize="18" FontWeight="Bold"
+                                       Foreground="White"/>
+                        </StackPanel>
+
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="20">
+                            <TextBlock Text="{Binding [DreamsText]}"
+                                       Foreground="#CCCCCC" FontSize="11"
+                                       TextWrapping="Wrap" LineHeight="18"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Контакты и поддержка -->
+                <Border CornerRadius="20" Padding="30" Margin="0,0,0,10"
+                        Background="#1A1A2E"
+                        BorderThickness="2" BorderBrush="#00FF88"
+                        BoxShadow="0 0 30 0 #00FF88">
+                    <StackPanel>
+                        <TextBlock Text="{Binding [ContactsTitle]}"
+                                   FontSize="20" FontWeight="Bold"
+                                   Foreground="White" Margin="0,0,0,20"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding [SocialNetworks]}"
+                                   Foreground="#CCCCCC" FontSize="12"
+                                   Margin="0,0,0,10" FontWeight="SemiBold"/>
+
+                        <WrapPanel Margin="0,0,0,15" HorizontalAlignment="Center">
+                            <Button Content="💬 Telegram" Padding="15,10" Margin="4"
+                                    Background="#0088CC" Foreground="White"
+                                    FontSize="10" FontWeight="SemiBold"
+                                    Click="TelegramBtn_Click"/>
+                            <Button Content="📺 YouTube" Padding="15,10" Margin="4"
+                                    Background="#FF0000" Foreground="White"
+                                    FontSize="10" FontWeight="SemiBold"
+                                    Click="YouTubeBtn_Click"/>
+                            <Button Content="🎮 Twitch" Padding="15,10" Margin="4"
+                                    Background="#9146FF" Foreground="White"
+                                    FontSize="10" FontWeight="SemiBold"
+                                    Click="TwitchBtn_Click"/>
+                        </WrapPanel>
+
+                        <Border Background="#2A2A3A" CornerRadius="12" Padding="20"
+                                Margin="0,15,0,0"
+                                BorderThickness="1" BorderBrush="#FFD700">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                                    <Viewbox Width="20" Height="20" Margin="0,0,8,0">
+                                        <TextBlock Text="❤️" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding [SupportTitle]}"
+                                               Foreground="#FFD700" FontSize="14"
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding [SupportText]}"
+                                           Foreground="#CCCCCC" FontSize="10"
+                                           TextWrapping="Wrap" HorizontalAlignment="Center"
+                                           Margin="0,0,0,10"/>
+
+                                <Button Content="{Binding [DonateButton]}"
+                                        Padding="20,12" Margin="0,5,0,0" x:Name="DonateButton"
+                                        Background="#FF6B6B" Foreground="White"
+                                        FontSize="11" FontWeight="Bold"
+                                        Click="DonateButton_Click"
+                                        HorizontalAlignment="Center"/>
+
+                                <Border x:Name="ThankYouAnimation"
+                                        Background="#2A2A3A" CornerRadius="10" Padding="15"
+                                        Margin="0,10,0,0" IsVisible="False">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding [ThankYouTitle]}"
+                                                   Foreground="#00FF88" FontSize="12"
+                                                   FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding [ThankYouText]}"
+                                                   Foreground="#CCCCCC" FontSize="9"
+                                                   TextWrapping="Wrap" HorizontalAlignment="Center"
+                                                   Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Text="{Binding [FinalThanks]}"
+                                   Foreground="#A0A0FF" FontSize="10"
+                                   Margin="0,15,0,0" HorizontalAlignment="Center"
+                                   FontStyle="Italic" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>  
+        </ScrollViewer>
+    </Grid>
+</Window>

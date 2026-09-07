@@ -1,0 +1,813 @@
+﻿<UserControl x:Class="BlackHole.SettingsPanel"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:services="using:Black_Hole_Cross.Services"
+             x:DataType="services:LocalizationService"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1060"
+             x:CompileBindings="False"
+             Background ="Transparent"
+              DataContext="{Binding Source={x:Static services:LocalizationService.Instance}}">
+
+    <UserControl.DataContext>
+        <ReflectionBinding Path="Instance" Source="{x:Static services:LocalizationService.Instance}"/>
+    </UserControl.DataContext>
+
+    <Grid>
+       
+        <Grid x:Name="MainContainer">
+            
+            <Rectangle x:Name="SpaceBackground">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#000000" Offset="0"/>
+                        <GradientStop Color="#0A0A2A" Offset="0.3"/>
+                        <GradientStop Color="#1A1A4A" Offset="0.6"/>
+                        <GradientStop Color="#000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+          
+            <Canvas x:Name="StarsLayer" />
+            <Canvas x:Name="ParticlesLayer" />
+            <Canvas x:Name="CometsLayer" />
+            <Canvas x:Name="ShootingStarsLayer" />
+        </Grid>
+
+      
+        <Rectangle Fill="#0A0A1A" Opacity="0.6"/>
+
+        <ScrollViewer x:Name="Scroll"
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="20"
+                      Background="Transparent">
+
+            <StackPanel>
+
+              
+                <Border x:Name="HeaderBorder"
+                        CornerRadius="16"
+                        Padding="20"
+                        Background="#1A1A2E"
+                        Margin="0,0,0,20"
+                        BoxShadow="0 0 25 0 #4050B0">
+                    <Grid>
+                        
+                        <Border x:Name="HeaderAnimatedBorder"
+                                CornerRadius="16"
+                                Height="88"
+                                Margin="0,0,0,10"
+                                BorderThickness="3"
+                                Background="Transparent"
+                                Opacity="0">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="Red" Offset="0"/>
+                                    <GradientStop Color="Blue" Offset="0.5"/>
+                                    <GradientStop Color="Green" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+
+                        
+                        <StackPanel>
+                            <Border CornerRadius="12"
+                                    Padding="15"
+                                    BorderThickness="1"
+                                    BorderBrush="#4050B0"
+                                    Background="Transparent"
+                                    BoxShadow="0 0 20 0 #4050B0">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="48"
+                                            Height="48"
+                                            CornerRadius="24"
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,15,0"
+                                            Background="#4050B0"
+                                            BoxShadow="0 0 15 0 #4050B0">
+                                        <Viewbox Width="24" Height="24">
+                                            <TextBlock Text="⚙️"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Viewbox>
+                                    </Border>
+
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock x:Name="TitleText"
+                                                   Text="{Binding [settings_panel.title]}"
+                                                   FontSize="22"
+                                                   FontWeight="Bold"
+                                                   Foreground="White"/>
+                                        <TextBlock Text="{Binding [settings_panel.subtitle]}"
+                                                   Foreground="#A0A0FF"
+                                                   FontSize="12"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- СИСТЕМНЫЙ МОНИТОРИНГ -->
+                <Border CornerRadius="20"
+                        Padding="24"
+                        Margin="0,0,0,20"
+                        Background="#121225"
+                        BorderBrush="#304080"
+                        BorderThickness="1"
+                        BoxShadow="0 0 30 0 #80000000">
+
+                    <StackPanel>
+                        <!-- ЗАГОЛОВОК -->
+                        <Grid Margin="0,0,0,20">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="📊" FontSize="18" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding [settings_panel.system_monitor.title]}"
+                                           Foreground="White" FontWeight="ExtraBold" FontSize="18"/>
+                            </StackPanel>
+
+                            <Border HorizontalAlignment="Right"
+                                    Background="#15FF8800"
+                                    CornerRadius="12"
+                                    Padding="8,4"
+                                    BorderBrush="#00FF88"
+                                    BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="6" Height="6" Fill="#00FF88" Margin="0,0,6,0"/>
+                                    <TextBlock Text="{Binding [settings_panel.system_monitor.live]}"
+                                               Foreground="#00FF88" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <!-- МЕТРИКИ -->
+                        <WrapPanel Orientation="Horizontal">
+                            <!-- CPU -->
+                            <StackPanel MinWidth="320" Margin="0,0,20,20">
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="🚀" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding [settings_panel.system_monitor.cpu]}" Foreground="#A0A0C0" FontSize="12" VerticalAlignment="Center"/>
+                                    <ProgressBar Grid.Column="2" x:Name="CpuProgressBar" Height="8" Maximum="100" Value="45" Foreground="#00FF88" Background="#10FFFFFF" BorderThickness="0" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" x:Name="CpuPercentText" Text="45%" Foreground="White" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <!-- RAM -->
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="💾" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding [settings_panel.system_monitor.ram]}" Foreground="#A0A0C0" FontSize="12" VerticalAlignment="Center"/>
+                                    <ProgressBar Grid.Column="2" x:Name="RamProgressBar" Height="8" Maximum="100" Value="68" Foreground="#FFA500" Background="#10FFFFFF" BorderThickness="0" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" x:Name="RamPercentText" Text="68%" Foreground="White" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <!-- DISK -->
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="💿" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding [settings_panel.system_monitor.disk]}" Foreground="#A0A0C0" FontSize="12" VerticalAlignment="Center"/>
+                                    <ProgressBar Grid.Column="2" x:Name="DiskProgressBar" Height="8" Maximum="100" Value="23" Foreground="#87CEEB" Background="#10FFFFFF" BorderThickness="0" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" x:Name="DiskPercentText" Text="23%" Foreground="White" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- ИНФО-КАРТОЧКИ -->
+                            <StackPanel VerticalAlignment="Top" MinWidth="180">
+                                <Border Background="#1AFFFFFF" CornerRadius="8" Padding="12,8" Margin="0,0,0,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="🌡️" Margin="0,0,10,0"/>
+                                        <TextBlock x:Name="TempText" Text="52°C" Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="#1AFFFFFF" CornerRadius="8" Padding="12,8" Margin="0,0,0,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="📊" Margin="0,0,10,0"/>
+                                        <TextBlock x:Name="ProcessCountText" Text="124 процесса" Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="#1AFFFFFF" CornerRadius="8" Padding="12,8" Margin="0,0,0,8">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="⏱️" Margin="0,0,10,0"/>
+                                        <TextBlock x:Name="UptimeText" Text="4ч 32м" Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </WrapPanel>
+
+                        <!-- НИЖНЯЯ ПАНЕЛЬ -->
+                        <Border Background="#05FFFFFF" CornerRadius="12" Padding="15" Margin="0,10,0,0" BorderBrush="#20FFFFFF" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding [settings_panel.system_monitor.system_load]}" Foreground="#A0A0C0" FontSize="11" FontWeight="Bold"/>
+                                <ProgressBar Grid.Column="1" x:Name="SystemLoadProgressBar" Value="72" Height="4" Margin="20,0" VerticalAlignment="Center" Foreground="#00FF88" Background="#10FFFFFF"/>
+                                <TextBlock Grid.Column="2" x:Name="SystemLoadPercentText" Text="72%" Foreground="#00FF88" FontWeight="Bold" FontSize="14"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- НАСТРОЙКИ ДИСПЛЕЯ -->
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,20" Background="#121225" BorderBrush="#304080" BorderThickness="1">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                <TextBlock Text="🖥️"/>
+                            </Viewbox>
+                            <TextBlock Text="Настройки дисплея" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Выберите монитор, разрешение и масштаб интерфейса" Foreground="#8080A0" FontSize="12" Margin="0,0,0,25"/>
+
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="📺 Монитор" Foreground="#CCCCCC" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="MonitorSelector" Height="38" Padding="10,5" SelectionChanged="MonitorSelector_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="🎯 Разрешение" Foreground="#CCCCCC" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="ResolutionSelector" Height="38" SelectionChanged="ResolutionSelector_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="🔍 Масштабирование" Foreground="#CCCCCC" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="ScalingSelector" Height="38" SelectionChanged="ScalingSelector_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,20">
+                            <TextBlock Text="🔲 Режим окна" Foreground="#CCCCCC" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="WindowModeSelector" Height="38" SelectedIndex="0" SelectionChanged="WindowModeSelector_SelectionChanged">
+                                <ComboBoxItem Content="Оконный режим"/>
+                                <ComboBoxItem Content="Безрамочный оконный"/>
+                                <ComboBoxItem Content="Полноэкранный режим"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <Border BorderBrush="#20FFFFFF" BorderThickness="0,1,0,0" Padding="0,20,0,0" Margin="0,10,0,0">
+                            <Button x:Name="ApplyDisplaySettingsBtn" Content="Применить изменения" Background="#4050B0" Foreground="White" FontSize="13" FontWeight="Bold" Padding="25,12" HorizontalAlignment="Right" Click="ApplyDisplaySettingsBtn_Click"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ТЕМЫ ОФОРМЛЕНИЯ -->
+               <Border CornerRadius="16" Padding="20" Margin="0,0,0,20" Background="#121225" BorderBrush="#304080" BorderThickness="1">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="🎨" FontSize="18" Margin="0,0,10,0"/>
+            <TextBlock Text="Тема оформления" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <WrapPanel Margin="0,10,0,0">
+            <Button Content="🌙 Dark Space" Click="SetDarkTheme_Click" Background="#12131C" Foreground="#F0F0F0" BorderBrush="#2A2D3D" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="☀️ Light Clean" Click="SetLightTheme_Click" Background="#F5F7FA" Foreground="#1A202C" BorderBrush="#CBD5E1" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+           
+            <!-- Основной список -->
+            <Button Content="⚡ CyberPunk" Click="SetCyberPunkTheme_Click" Background="#181A26" Foreground="#00F0FF" BorderBrush="#FF0055" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🖤 AMOLED" Click="SetAMOLEDTheme_Click" Background="#000000" Foreground="#FFFFFF" BorderBrush="#333333" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🌃 Tokyo Night" Click="SetTokyoTheme_Click" Background="#1A1B26" Foreground="#7AA2F7" BorderBrush="#BB9AF7" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="💻 Matrix" Click="SetMatrixTheme_Click" Background="#020D04" Foreground="#00FF66" BorderBrush="#00802B" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="⚔️ Sith Red" Click="SetRedTheme_Click" Background="#170404" Foreground="#FF4D4D" BorderBrush="#FF1A1A" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🌲 Nordic Forest" Click="SetNordicTheme_Click" Background="#0F1715" Foreground="#8FC1B5" BorderBrush="#4A7C59" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🌌 Nebula" Click="SetNebulaTheme_Click" Background="#0B091A" Foreground="#FF00FF" BorderBrush="#8A2BE2" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="⚙️ Industrial" Click="SetMetallTheme_Click" Background="#2B2E37" Foreground="#F9FAFB" BorderBrush="#F59E0B" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🌆 Synthwave 80s" Click="SetSynthTheme_Click" Background="#1A002C" Foreground="#00FFFF" BorderBrush="#FF007F" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🔮 Deep Cosmos" Click="SetCosmosTheme_Click" Background="#080711" Foreground="#00F0FF" BorderBrush="#7B2CBF" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🩸 Blood Moon" Click="SetMoonTheme_Click" Background="#0A0A0C" Foreground="#FF4D6D" BorderBrush="#4A0E17" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="🌊 Ocean Abyss" Click="SetOceanTheme_Click" Background="#030F1A" Foreground="#00F5D4" BorderBrush="#0E3A5A" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="👑 Solar Gold" Click="SetGoldTheme_Click" Background="#141210" Foreground="#FFB703" BorderBrush="#FFB703" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+            <Button Content="❄️ Frost Glass" Click="SetGlassTheme_Click" Background="#EBF0F5" Foreground="#4F46E5" BorderBrush="#CBD5E1" BorderThickness="1.5" CornerRadius="8" Padding="14,8" Margin="0,0,10,10"/>
+        </WrapPanel>
+    </StackPanel>
+</Border>
+
+
+                <!-- РЕЖИМ ОБНОВЛЕНИЯ -->
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,20" Background="#121225" BorderBrush="#304080" BorderThickness="1">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                <TextBlock Text="⏱️"/>
+                            </Viewbox>
+                            <TextBlock Text="Режим обновления данных" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Выберите частоту обновления информации о системе" Foreground="#AAAAAA" FontSize="11" Margin="0,0,0,15"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            
+    <Button x:Name="RealTimeModeBtn" 
+            Grid.Column="0" 
+            Content="🚀 Real Time (2 сек)" 
+            Margin="0,0,4,0" 
+            Padding="12,10" 
+            Background="#1C1D26" 
+            Foreground="{DynamicResource TextPrimary}" 
+            BorderBrush="#A855F7" 
+            BorderThickness="1" 
+            CornerRadius="8"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            FontWeight="SemiBold" 
+            Click="UpdateMode_Click" 
+            Tag="2"/>
+
+    <Button x:Name="NormalModeBtn" 
+            Grid.Column="1" 
+            Content="⚡ Обычный (5 сек)" 
+            Margin="4,0,4,0" 
+            Padding="12,10" 
+            Background="#1C1D26" 
+            Foreground="{DynamicResource TextPrimary}" 
+            BorderBrush="#00ECE5" 
+            BorderThickness="1" 
+            CornerRadius="8"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            FontWeight="SemiBold" 
+            Click="UpdateMode_Click" 
+            Tag="5"/>
+
+    <Button x:Name="EcoModeBtn" 
+            Grid.Column="2" 
+            Content="🌱 Эко (15 сек)" 
+            Margin="4,0,0,0" 
+            Padding="12,10" 
+            Background="#1C1D26" 
+            Foreground="{DynamicResource TextPrimary}" 
+            BorderBrush="#40B050" 
+            BorderThickness="1" 
+            CornerRadius="8"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            FontWeight="SemiBold" 
+            Click="UpdateMode_Click" 
+            Tag="15"/>
+</Grid>
+
+
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="12" Margin="0,15,0,0">
+                            <StackPanel>
+                                <TextBlock Text="📊 Текущий режим:" Foreground="#CCCCCC" FontSize="10"/>
+                                <TextBlock x:Name="CurrentUpdateModeText" Text="Обычный (5 сек)" Foreground="#4050B0" FontSize="11" FontWeight="Bold" Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ПРАВА ДОСТУПА -->
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,20" Background="#121225" BorderBrush="#304080" BorderThickness="1">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                <TextBlock Text="🔒"/>
+                            </Viewbox>
+                            <TextBlock Text="Права доступа" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Запуск от имени администратора" Foreground="#CCCCCC" VerticalAlignment="Center"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <ToggleButton x:Name="RunAsAdminToggle" Width="44" Height="24" Background="#404040" Checked="RunAsAdminToggle_Checked" Unchecked="RunAsAdminToggle_Unchecked">
+                                    <ToggleButton.Styles>
+                                        <Style Selector="ToggleButton">
+                                            <Setter Property="Template">
+                                                <ControlTemplate>
+                                                    <Border x:Name="PART_Border" Background="{TemplateBinding Background}" CornerRadius="12">
+                                                        <Border x:Name="PART_Thumb" Width="20" Height="20" Background="White" CornerRadius="10" HorizontalAlignment="Left" Margin="2,2,0,2"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter>
+                                        </Style>
+                                        <Style Selector="ToggleButton:checked /template/ Border#PART_Border">
+                                            <Setter Property="Background" Value="#9370DB"/>
+                                        </Style>
+                                        <Style Selector="ToggleButton:checked /template/ Border#PART_Thumb">
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="Margin" Value="0,2,2,2"/>
+                                        </Style>
+                                    </ToggleButton.Styles>
+                                </ToggleButton>
+                            </StackPanel>
+                        </Grid>
+
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="12" Margin="0,5,0,0">
+                            <TextBlock Text="⚠️ Приложение будет перезапущено с правами администратора. Это необходимо для доступа к системным процессам и некоторым функциям мониторинга." Foreground="#FFA500" FontSize="10" TextWrapping="Wrap"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
+                <TextBlock Text="{Binding [settings_panel.quick_actions.title]}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+                <WrapPanel Margin="0,0,0,25">
+                    <Button Content="{Binding [settings_panel.quick_actions.clean]}" Padding="20,12" Margin="4" Background="#4050B0" Foreground="White" FontSize="12" FontWeight="SemiBold" Click="CleanCache_Click"/>
+                    <Button Content="{Binding [settings_panel.quick_actions.diagnostics]}" Padding="20,12" Margin="4" Background="#40B050" Foreground="White" FontSize="12" FontWeight="SemiBold" Click="Diagnostics_Click"/>
+                    <Button Content="{Binding [settings_panel.quick_actions.processes]}" Padding="20,12" Margin="4" Background="#B08040" Foreground="White" FontSize="12" FontWeight="SemiBold" Click="ShowProcesses_Click"/>
+                    <Button x:Name="OptimizeGameBtn" Content="{Binding [settings_panel.quick_actions.enable_optimization]}" Padding="20,12" Margin="4" Background="#B04080" Foreground="White" FontSize="12" FontWeight="SemiBold" Click="ToggleGameOptimization_Click"/>
+                    <Button x:Name="DisableOptimizeBtn" Content="{Binding [settings_panel.quick_actions.disable_optimization]}" Padding="20,12" Margin="4" Background="#808080" Foreground="White" FontSize="12" FontWeight="SemiBold" Click="DisableGameOptimization_Click" IsVisible="False"/>
+                </WrapPanel>
+
+                <!-- СТАТИСТИКА ПРОЕКТА -->
+                <Grid Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox Width="24" Height="24" Margin="0,0,12,0">
+                        <TextBlock Text="📈" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                    <TextBlock Grid.Column="1" Text="{Binding [settings_panel.project_stats.title]}" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- ЛЕВАЯ КОЛОНКА -->
+                        <StackPanel Grid.Column="0">
+                            <!-- ДНИ РАБОТЫ -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Viewbox Width="18" Height="18" Margin="0,0,10,0">
+                                    <TextBlock Text="📅" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [settings_panel.project_stats.days_working]}" Foreground="#CCCCCC" FontSize="11"/>
+                                    <TextBlock x:Name="DaysText" Text="0 дней" Foreground="#87CEEB" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- ДЕНЬ РОЖДЕНИЯ -->
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Width="18" Height="18" Margin="0,0,10,0">
+                                    <TextBlock Text="🎂" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [settings_panel.project_stats.birthday]}" Foreground="#CCCCCC" FontSize="11"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock x:Name="BirthdayText" Text="{Binding [settings_panel.project_stats.select_date]}" Foreground="Gold" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <Button x:Name="SelectBirthdayBtn" Content="📅" Padding="6,4" Margin="5,0,0,0" Background="Transparent" Foreground="Gold" FontSize="10" BorderThickness="1" BorderBrush="Gold" Click="SelectBirthdayBtn_Click" IsVisible="True"/>
+                                        <Button x:Name="BirthdayLetterBtn" Content="✉️" Padding="6,4" Margin="5,0,0,0" Background="Transparent" Foreground="#FFD700" FontSize="10" BorderThickness="1" BorderBrush="#FFD700" Click="BirthdayLetterBtn_Click" IsVisible="False"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Content="📅 ОТКРЫТЬ КАЛЕНДАРЬ" Click="OpenCalendar_Click" Background="#9B5DE5" Foreground="White" Padding="15,10" Margin="5"/>
+                        </StackPanel>
+
+                        <!-- РАЗДЕЛИТЕЛЬ -->
+                        <Rectangle Grid.Column="1" Width="1" Margin="20,5" Fill="#404040" VerticalAlignment="Stretch"/>
+
+                        <!-- ПРАВАЯ КОЛОНКА -->
+                        <StackPanel Grid.Column="2" Margin="20,0,0,0">
+                            <!-- ЗАПУСКИ -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Viewbox Width="18" Height="18" Margin="0,0,10,0">
+                                    <TextBlock Text="🚀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [settings_panel.project_stats.launches]}" Foreground="#CCCCCC" FontSize="11"/>
+                                    <TextBlock x:Name="LaunchesText" Text="0 раз" Foreground="Orange" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- СРЕДНЕЕ ВРЕМЯ -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <Viewbox Width="18" Height="18" Margin="0,0,10,0">
+                                    <TextBlock Text="⏱️" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [settings_panel.project_stats.avg_time]}" Foreground="#CCCCCC" FontSize="11"/>
+                                    <TextBlock x:Name="AvgTimeText" Text="0 минут" Foreground="#FFB6C1" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- О ПРОЕКТЕ -->
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Border Background="#4050B0" Width="36" Height="36" CornerRadius="18" VerticalAlignment="Center" Margin="0,0,12,0">
+                                <Viewbox Width="20" Height="20">
+                                    <TextBlock Text="🚀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding [settings_panel.about_project.title]}" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Text="{Binding [settings_panel.about_project.version]}" Foreground="#A0A0FF" FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding [settings_panel.about_project.description]}" Foreground="#CCCCCC" TextWrapping="Wrap" FontSize="13" Margin="0,0,0,20"/>
+
+                        <WrapPanel>
+                           
+                            <Button Content="{Binding [settings_panel.about_project.about_me]}" Padding="15,10" Margin="4" Background="#B08040" Foreground="White" FontSize="11" FontWeight="SemiBold" Click="AboutMe_Click"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- ОСНОВНЫЕ НАСТРОЙКИ -->
+                <Grid Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox Width="24" Height="24" Margin="0,0,12,0">
+                        <TextBlock Text="🎛️" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                    <TextBlock Grid.Column="1" Text="{Binding [settings_panel.main_settings.title]}" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <!-- ЯЗЫК -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Viewbox Width="20" Height="20" Margin="0,0,12,0">
+                                <TextBlock Text="🌐" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <TextBlock Text="{Binding [settings_panel.main_settings.language]}" Foreground="White" FontSize="13" FontWeight="SemiBold" Width="140" VerticalAlignment="Center"/>
+                            <Button x:Name="RussianBtn" Content="{Binding [settings_panel.main_settings.russian]}" Padding="20,10" Margin="5,0" Background="#4050B0" Foreground="White" FontSize="11" FontWeight="SemiBold" Click="RussianBtn_Click"/>
+                            <Button x:Name="EnglishBtn" Content="{Binding [settings_panel.main_settings.english]}" Padding="20,10" Margin="5,0" Background="#2A2A2A" Foreground="#888888" FontSize="11" FontWeight="SemiBold" Click="EnglishBtn_Click"/>
+                        </StackPanel>
+
+                        <!-- АНИМАЦИИ -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Viewbox Width="20" Height="20" Margin="0,0,12,0">
+                                <TextBlock Text="🎨" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <CheckBox x:Name="AnimationsCheckBox" Content="{Binding [settings_panel.main_settings.animations]}" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                       
+                    </StackPanel>
+                </Border>
+
+                <!-- УВЕДОМЛЕНИЯ -->
+                <TextBlock Text="{Binding [settings_panel.notifications.title]}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+                <Border CornerRadius="16" Padding="25" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <CheckBox x:Name="NotificationsCheckBox" Content="{Binding [settings_panel.notifications.popup]}" Foreground="White" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,20"/>
+
+                        <TextBlock Text="{Binding [settings_panel.notifications.email]}" Foreground="White" FontSize="12" Margin="0,0,0,8"/>
+                        <TextBox x:Name="EmailTextBox" Text="" Padding="12" Background="#333333" Foreground="White" BorderThickness="0" FontSize="12" Height="40" TextChanged="EmailTextBox_TextChanged"/>
+
+                        <TextBlock Text="{Binding [settings_panel.notifications.email_description]}" Foreground="#888888" FontSize="10" Margin="0,8,0,15" TextWrapping="Wrap"/>
+
+                        <Button Content="{Binding [settings_panel.notifications.bind_email]}" Padding="15,10" Background="#4050B0" Foreground="White" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Left" Click="BindEmailButton_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ИСТОРИЯ УВЕДОМЛЕНИЙ -->
+                <WrapPanel Margin="0,0,0,15">
+                    <Button x:Name="FilterAllBtn" Content="{Binding [settings_panel.notifications_history.filter_all]}" Padding="12,6" Margin="2" Background="#4050B0" Foreground="White" FontSize="10" FontWeight="SemiBold" Click="FilterNotifications_Click"/>
+                    <Button x:Name="FilterCriticalBtn" Content="{Binding [settings_panel.notifications_history.filter_critical]}" Padding="12,6" Margin="2" Background="Transparent" Foreground="#FF4444" FontSize="10" BorderThickness="1" BorderBrush="#FF4444" Click="FilterNotifications_Click"/>
+                    <Button x:Name="FilterWarningBtn" Content="{Binding [settings_panel.notifications_history.filter_warning]}" Padding="12,6" Margin="2" Background="Transparent" Foreground="Orange" FontSize="10" BorderThickness="1" BorderBrush="Orange" Click="FilterNotifications_Click"/>
+                    <Button x:Name="FilterInfoBtn" Content="{Binding [settings_panel.notifications_history.filter_info]}" Padding="12,6" Margin="2" Background="Transparent" Foreground="#87CEEB" FontSize="10" BorderThickness="1" BorderBrush="#87CEEB" Click="FilterNotifications_Click"/>
+                </WrapPanel>
+
+                <!-- СПИСОК УВЕДОМЛЕНИЙ -->
+                <Border Background="#2A2A3A" CornerRadius="10" Padding="0" Height="200">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="NotificationsHistoryList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#2A2A3A" CornerRadius="8" Padding="12" Margin="5" BorderThickness="1" BorderBrush="#404040">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="{Binding Icon}" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center"/>
+
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="SemiBold" FontSize="11"/>
+                                                <TextBlock Text="{Binding Message}" Foreground="#AAAAAA" FontSize="9" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding Timestamp, StringFormat=HH:mm}" Foreground="#666666" FontSize="8" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Timestamp, StringFormat=dd.MM.yy}" Foreground="#555555" FontSize="7"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- СТАТИСТИКА УВЕДОМЛЕНИЙ -->
+                <Border Background="#2A2A3A" CornerRadius="8" Padding="10" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock x:Name="HistoryStatsText" Text="{Binding [settings_panel.notifications_history.stats]}" Foreground="#888888" FontSize="9" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- ОЧИСТКА ИСТОРИИ -->
+                <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <Button x:Name="ClearHistoryBtn" Content="{Binding [settings_panel.notifications_history.clear]}" Padding="12,6" Margin="2" Background="Transparent" Foreground="#FF6B6B" FontSize="10" BorderThickness="1" BorderBrush="#FF6B6B" Click="ClearHistoryBtn_Click"/>
+                </WrapPanel>
+
+                <!-- ЧАТ ПОДДЕРЖКИ -->
+                <TextBlock Text="{Binding [settings_panel.support_chat.title]}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,20,0,15"/>
+
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <!-- ЗАГОЛОВОК ЧАТА -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Viewbox Width="20" Height="20" Margin="0,0,8,0">
+                                <TextBlock Text="🤖" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <TextBlock Text="{Binding [settings_panel.support_chat.ai_assistant]}" Foreground="White" FontWeight="SemiBold" FontSize="14"/>
+                            <Border Background="#FFA500" CornerRadius="8" Padding="4,2" Margin="8,0,0,0">
+                                <TextBlock Text="{Binding [settings_panel.support_chat.soon]}" Foreground="Black" FontSize="8" FontWeight="Bold"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- ОБЛАСТЬ СООБЩЕНИЙ -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="0" Height="120" Margin="0,0,0,10">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" x:Name="ChatScrollViewer">
+                                <StackPanel x:Name="ChatMessagesPanel" Margin="10">
+                                    <!-- СООБЩЕНИЕ ОТ AI -->
+                                    <Border Background="#4050B0" CornerRadius="10" Padding="12" Margin="0,0,40,8" HorizontalAlignment="Left">
+                                        <StackPanel>
+                                            <TextBlock Text="🤖 AI Assistant" Foreground="#A0A0FF" FontSize="9" FontWeight="Bold" Margin="0,0,0,4"/>
+                                            <TextBlock x:Name="AIMessageText" Text="{Binding [settings_panel.support_chat.ai_message]}" Foreground="White" FontSize="11" TextWrapping="Wrap"/>
+                                            <TextBlock Text="12:30" Foreground="#A0A0FF" FontSize="8" HorizontalAlignment="Right" Margin="0,4,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <!-- ИНДИКАТОР НАБОРА ТЕКСТА -->
+                                    <Border x:Name="TypingIndicator" Background="#4050B0" CornerRadius="10" Padding="12" Margin="0,0,40,8" HorizontalAlignment="Left" IsVisible="False">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="🤖 AI Assistant" Foreground="#A0A0FF" FontSize="9" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding [settings_panel.support_chat.typing]}" Foreground="#CCCCCC" FontSize="9" Margin="4,0,0,0"/>
+                                            <TextBlock x:Name="TypingDots" Text="..." Foreground="#CCCCCC" FontSize="9" FontWeight="Bold"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Border>
+
+                        <!-- ПОЛЕ ВВОДА -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="ChatTextBox" Text="" Watermark="Введите сообщение..." Padding="12" Background="#2A2A3A" Foreground="White" BorderThickness="0" FontSize="11" Height="40" Margin="0,0,10,0" />
+                            <Button Grid.Column="1" x:Name="SendChatButton" Content="{Binding [settings_panel.support_chat.send]}" Padding="15,10" Background="#4050B0" Foreground="White" FontSize="11" FontWeight="SemiBold" Click="SendChatButton_Click"/>
+                        </Grid>
+
+                        <!-- ИНФОРМАЦИЯ О БУДУЩЕМ ОБНОВЛЕНИИ -->
+                        <Border Background="#2A2A3A" CornerRadius="8" Padding="12" Margin="0,10,0,0" BorderThickness="1" BorderBrush="#FFA500">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.support_chat.feature_development]}" Foreground="#FFA500" FontSize="10" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding [settings_panel.support_chat.feature_description]}" Foreground="#CCCCCC" FontSize="9" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- СКОРО ПОЯВИТСЯ -->
+                <TextBlock Text="{Binding [settings_panel.coming_soon.title]}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <!-- Блок 1 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#4050B0">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.game_mode]}" Foreground="#90C8FF" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.game_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 2 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#40B050">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.smart_scenarios]}" Foreground="#90EE90" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.smart_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 3 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#FFA500">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.smart_notifications]}" Foreground="#FFD700" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.notifications_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 4 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#FF6B6B">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.achievements]}" Foreground="#FFA07A" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.achievements_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 5 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#9370DB">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.advanced_tabs]}" Foreground="#B19CD9" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.tabs_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 6 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" Margin="0,0,0,10" BorderThickness="1" BorderBrush="#20B2AA">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.diagnostics]}" Foreground="#7FFFD4" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.diagnostics_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Блок 7 -->
+                        <Border Background="#2A2A3A" CornerRadius="10" Padding="15" BorderThickness="1" BorderBrush="#FFD700">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.more]}" Foreground="#FFFACD" FontWeight="SemiBold" FontSize="12" Margin="0,0,0,5"/>
+                                <TextBlock Text="{Binding [settings_panel.coming_soon.more_description]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ -->
+                <TextBlock Text="{Binding [settings_panel.additional_settings.title]}" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,15"/>
+
+                <Border CornerRadius="16" Padding="20" Margin="0,0,0,25" Background="#1A1A2E" BoxShadow="0 0 25 0 #4050B0">
+                    <StackPanel>
+                        <!-- АВТОЗАГРУЗКА -->
+                        <CheckBox x:Name="AutoStartCheckBox" Content="{Binding [settings_panel.additional_settings.auto_start]}" Foreground="White" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,12" IsCheckedChanged="SettingCheckBox_Changed"/>
+
+                        <!-- СВОРАЧИВАНИЕ В ТРЕЙ -->
+                        <CheckBox x:Name="MinimizeToTrayCheckBox" Content="{Binding [settings_panel.additional_settings.minimize_tray]}" Foreground="White" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,12" IsCheckedChanged="SettingCheckBox_Changed"/>
+
+                        <!-- ИНФОРМАЦИЯ -->
+                        <Border Background="#2A2A3A" CornerRadius="8" Padding="12" Margin="0,12,0,0" BorderThickness="1" BorderBrush="#404040">
+                            <StackPanel>
+                                <TextBlock Text="{Binding [settings_panel.additional_settings.settings_info]}" Foreground="#87CEEB" FontSize="10" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding [settings_panel.additional_settings.settings_details]}" Foreground="#AAAAAA" FontSize="9" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

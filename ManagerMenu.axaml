@@ -1,0 +1,212 @@
+﻿<Window x:Class="BlackHole.ManagerMenu"
+        x:Name="RootWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Black Hole"
+        Height="700"
+        Width="1100"
+        MinWidth="900"
+        MinHeight="600"
+        Background="{DynamicResource MainBg}"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="None"
+        TransparencyLevelHint="None"
+        CanResize="True">
+
+    <Window.Styles>
+        <!-- Стилизация списка меню -->
+        <Style Selector="ListBoxItem">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="0,3"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+        </Style>
+
+        <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource HoverBg}"/>
+        </Style>
+
+        <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource SelectedBg}"/>
+        </Style>
+
+       
+        <Style Selector="Button.WinCapsuleBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Button.WinCapsuleBtn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource HoverBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid x:Name="RootGrid" Background="{DynamicResource MainBg}">
+        
+      
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+     
+            <Border Grid.Column="0"
+                    Background="{DynamicResource MenuBg}"
+                    BorderBrush="{DynamicResource MenuBorder}"
+                    BorderThickness="0,0,1,0"
+                    Padding="16,20">
+                <Grid RowDefinitions="Auto,*,Auto">
+                   
+                   
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,24">
+                        <Border Width="36" Height="36" CornerRadius="10" Background="{DynamicResource AccentGradient}" Margin="0,0,12,0">
+                          <Image Source="Images/Black_holeListBox.png"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="BLACK HOLE" FontWeight="ExtraBold" FontSize="16" LetterSpacing="1.5" Foreground="{DynamicResource TextPrimary}"/>
+                            <TextBlock Text="Cross-Platform Core" FontSize="10" Foreground="{DynamicResource TextSecondary}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                   
+                    <ListBox x:Name="MenuList"
+                             Grid.Row="1"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             SelectionChanged="MenuList_SC">
+                        <ListBoxItem Tag="Settings">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="⚙️" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Настройки" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                       
+                        <ListBoxItem Tag="Tests">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="🧪" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Тесты" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+
+                        <ListBoxItem Tag="Diagnostics">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="📊" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Диагностика" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+
+                        <ListBoxItem Tag="Files">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="📁" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Файлы" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+
+                        <ListBoxItem Tag="Security">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="🛡️" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Безопасность" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+
+                        <ListBoxItem Tag="History">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="📜" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="История" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+
+                        <ListBoxItem Tag="Help">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <TextBlock Text="❓" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="Помощь" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+
+                 
+                    <Button Grid.Row="2"
+                            Click="ExitButton_Click"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            CornerRadius="10"
+                            Padding="12">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="🚪" FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Text="Выйти" Foreground="#FF5555" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+        
+            <Grid Grid.Column="1" RowDefinitions="Auto,*">
+               
+             
+                <Grid Grid.Row="0" Margin="20,15,20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                   
+                    <Border Grid.Row="0"
+                            HorizontalAlignment="Right"
+                            Background="{DynamicResource MenuBg}"
+                            BorderBrush="{DynamicResource MenuBorder}"
+                            BorderThickness="1"
+                            CornerRadius="16"
+                            Padding="3,2"
+                            ZIndex="10">
+                        <StackPanel Orientation="Horizontal" Spacing="2">
+                            <Button Classes="WinCapsuleBtn" Content="─" Click="MinimizeWindow_Click"/>
+                            <Button Classes="WinCapsuleBtn" Content="▢" Click="MinimizeButton_Click"/>
+                            <Button Classes="WinCapsuleBtn" Content="✕" Click="CloseWindow_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                   
+                    <StackPanel Grid.Row="1" Margin="0,10,0,5" VerticalAlignment="Center">
+                        <TextBlock x:Name="GreetingText"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource TextPrimary}"
+                                   Opacity="0"/>
+                        <TextBlock x:Name="SeasonSubText"
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TextSecondary}"
+                                   Margin="0,2,0,0"
+                                   Opacity="0"/>
+                    </StackPanel>
+                </Grid>
+
+          
+                <ContentControl x:Name="ContentArea"
+                                Grid.Row="1"
+                                Margin="20,0,20,20"/>
+            </Grid>
+        </Grid>
+
+      
+        <Border Height="35" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Stretch" 
+                Margin="0,0,140,0"
+                Background="Transparent" 
+                PointerPressed="TopBar_PointerPressed" 
+                ZIndex="999">
+            
+        </Border>
+
+    </Grid>
+</Window>

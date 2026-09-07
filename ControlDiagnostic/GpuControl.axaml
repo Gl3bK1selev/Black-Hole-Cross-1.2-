@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.GpuControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="750" d:DesignWidth="950">
+
+    <UserControl.Styles>
+        <Style Selector="Border.StatCard">
+            <Setter Property="Background" Value="#252526"/>
+            <Setter Property="BorderBrush" Value="#3E3E42"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+        <Style Selector="TextBlock.StatTitle">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#AAAAAA"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <Style Selector="TextBlock.StatValue">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+
+         
+            <TextBlock Text="Диагностика видеокарты"
+                       x:Name="DiagnosGPU"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,5,0,5"/>
+
+            <TextBlock x:Name="descrip"
+                       Text="Мониторинг графического ускорителя и сенсоров"
+                       FontSize="14"
+                       Foreground="{DynamicResource TextSecondary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+           
+            <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,20">
+                
+                <!-- 1. Нагрузка -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🔥 НАГРУЗКА GPU" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuLoadText" Text="0%" Classes="StatValue" HorizontalAlignment="Center" Foreground="#FF5722"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 2. Температура -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🌡️ ТЕМПЕРАТУРА" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuTempText" Text="0 °C" Classes="StatValue" HorizontalAlignment="Center" Foreground="#E91E63"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 3. Потребление энергии -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="⚡ ЭНЕРГОПОТРЕБЛЕНИЕ" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuPowerText" Text="0 W" Classes="StatValue" HorizontalAlignment="Center" Foreground="#FFC107"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 4. Обороты кулера -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🌀 КУЛЕР (FAN)" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuFanText" Text="0%" Classes="StatValue" HorizontalAlignment="Center" Foreground="#00BCD4"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 5. Видеопамять VRAM -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🧠 ПАМЯТЬ VRAM" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuVramText" Text="0 / 0 MB" Classes="StatValue" HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 6. Частота Ядра -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🎯 ЧАСТОТА ЯДРА" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuClockText" Text="0 MHz" Classes="StatValue" HorizontalAlignment="Center" Foreground="#2196F3"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 7. Частота Памяти -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🏎️ ЧАСТОТА VRAM" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuMemClockText" Text="0 MHz" Classes="StatValue" HorizontalAlignment="Center" Foreground="#9C27B0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 8. PCIe Линия -->
+                <Border Classes="StatCard">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🔗 ШИНА PCIE" Classes="StatTitle" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="GpuPcieText" Text="PCIe x16" Classes="StatValue" HorizontalAlignment="Center" Foreground="#3F51B5"/>
+                    </StackPanel>
+                </Border>
+
+            </WrapPanel>
+
+            <Border Height="1" Background="#333333" Margin="20,0,20,20"/>
+
+         
+            <StackPanel x:Name="InfoCardsPanel"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

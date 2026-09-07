@@ -1,0 +1,204 @@
+﻿<UserControl x:Class="Black_Hole_Cross.FilesPanel"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BlackHole"
+             xmlns:services="clr-namespace:Black_Hole_Cross.Services"
+             mc:Ignorable="d"
+             >
+
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#0A0A1A" CornerRadius="15" Padding="25" BoxShadow="0 0 25 0 #40B050">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <Border Grid.Row="0" Background="Transparent" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox Width="28" Height="28" Margin="0,0,15,0">
+                        <TextBlock Text="💾" Foreground="#00FF88"/>
+                    </Viewbox>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[FilesPanelTitle]}"
+                                  Foreground="#00FF88"
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[FilesPanelSubtitle]}"
+                                  Foreground="#A0A0FF"
+                                  FontSize="10"
+                                  HorizontalAlignment="Center"
+                                  Margin="0,5,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+          
+            <Border Grid.Row="1" Background="#1A1A2E" CornerRadius="12" Padding="20" BorderThickness="1" BorderBrush="#2A2A4A">
+                <StackPanel>
+                  
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#4050B0">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="📊" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DiskAnalyzerTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#87CEEB"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DiskAnalyzerDescription]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DiskAnalyzerFeatures]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                  
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#FF6B6B">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="🧹" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DuplicateCleanerTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#FF6B6B"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DuplicateCleanerDescription]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DuplicateCleanerFeatures]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+               
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#FFD700">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="🚀" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DownloadManagerTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#FFD700"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DownloadManagerDescription]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[DownloadManagerFeatures]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                  
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#9370DB">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="🔍" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[LargeFilesSearchTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#9370DB"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[LargeFilesSearchDescription]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[LargeFilesSearchFeatures]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                   
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15"
+                           BorderThickness="1" BorderBrush="#00FF88">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="✏️" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BatchRenameTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#00FF88"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BatchRenameDescription]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BatchRenameFeatures]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+          
+            <Border Grid.Row="2" Background="Transparent" Margin="0,15,0,0">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[FilesPanelFooterTitle]}"
+                              Foreground="#A0A0FF"
+                              FontSize="10"
+                              FontWeight="SemiBold"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[FilesPanelFooterDescription]}"
+                              Foreground="#888888"
+                              FontSize="8"
+                              HorizontalAlignment="Center"
+                              Margin="0,3,0,0"
+                              FontStyle="Italic"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

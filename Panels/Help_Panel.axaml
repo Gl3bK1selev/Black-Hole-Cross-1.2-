@@ -1,0 +1,221 @@
+﻿<UserControl x:Class="Black_Hole_Cross.Panels.Help_Panel"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:services="using:Black_Hole_Cross.Services"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:CompileBindings="False"
+             DataContext="{Binding Source={x:Static services:LocalizationService.Instance}}">
+
+    <Border Background="#0A0A1A" CornerRadius="15" Padding="25" BoxShadow="0 0 25 0 #20B2AA">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+           
+           
+            <Border Grid.Row="0" Background="Transparent" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox Width="28" Height="28" Margin="0,0,15,0">
+                        <TextBlock Text="❓" Foreground="#20B2AA"/>
+                    </Viewbox>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelTitle]}"
+                                   Foreground="#20B2AA"
+                                   FontSize="18"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelSubtitle]}"
+                                   Foreground="#A0A0FF"
+                                   FontSize="10"
+                                   Margin="0,5,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Основной контент -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <!-- Краткое руководство -->
+                    <Border Background="#1A1A2E" CornerRadius="12" Padding="20" Margin="0,0,0,15"
+                            BorderThickness="1" BorderBrush="#20B2AA">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                    <TextBlock Text="🚀" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelQuickStartTitle]}"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="#20B2AA"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelQuickStartContent]}"
+                                       FontSize="10"
+                                       Foreground="#CCCCCC"
+                                       TextWrapping="Wrap"
+                                       LineHeight="16"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Частые вопросы -->
+                    <Border Background="#1A1A2E" CornerRadius="12" Padding="20" Margin="0,0,0,15"
+                            BorderThickness="1" BorderBrush="#9370DB">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                    <TextBlock Text="💡" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFAQTitle]}"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="#9370DB"/>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFAQContent]}"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           Foreground="#FFD700"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,10,0,10"/>
+                                <Viewbox Width="80" Height="60" HorizontalAlignment="Center" Margin="0,10,0,10">
+                                    <TextBlock Text="¯\_(ツ)_/¯" Foreground="#888888"/>
+                                </Viewbox>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Обратная связь -->
+                    <Border Background="#1A1A2E" CornerRadius="12" Padding="20" Margin="0,0,0,15"
+                            BorderThickness="1" BorderBrush="#00FF88">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                    <TextBlock Text="📧" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackTitle]}"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="#00FF88"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackDesc]}"
+                                       FontSize="10"
+                                       Foreground="#CCCCCC"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,15"
+                                       LineHeight="16"/>
+
+                            <!-- Форма обратной связи -->
+                            <StackPanel>
+                                <!-- Имя -->
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackName]}"
+                                           FontSize="10"
+                                           Foreground="#A0A0FF"
+                                           Margin="0,0,0,5"/>
+                                <TextBox x:Name="NameTextBox"
+                                         Background="#2A2A3A"
+                                         Foreground="White"
+                                         BorderBrush="#00FF88"
+                                         BorderThickness="1"
+                                         Padding="10"
+                                         FontSize="10"
+                                         Height="30"
+                                         Margin="0,0,0,10"/>
+
+                                <!-- Email -->
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackEmail]}"
+                                           FontSize="10"
+                                           Foreground="#A0A0FF"
+                                           Margin="0,0,0,5"/>
+                                <TextBox x:Name="EmailTextBox"
+                                         Background="#2A2A3A"
+                                         Foreground="White"
+                                         BorderBrush="#00FF88"
+                                         BorderThickness="1"
+                                         Padding="10"
+                                         FontSize="10"
+                                         Height="30"
+                                         Margin="0,0,0,10"/>
+
+                                <!-- Описание проблемы -->
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackMessage]}"
+                                           FontSize="10"
+                                           Foreground="#A0A0FF"
+                                           Margin="0,0,0,5"/>
+                                <TextBox x:Name="MessageTextBox"
+                                         Background="#2A2A3A"
+                                         Foreground="White"
+                                         BorderBrush="#00FF88"
+                                         BorderThickness="1"
+                                         Padding="10"
+                                         FontSize="10"
+                                         Height="80"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Margin="0,0,0,15"/>
+
+                                <!-- Кнопка отправки с тенью -->
+                                <Border CornerRadius="4" BoxShadow="0 0 10 0 #00FF88">
+                                    <Button x:Name="SendFeedbackButton"
+                                            Content="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFeedbackButton]}"
+                                            Background="#00FF88"
+                                            Foreground="#0A0A1A"
+                                            FontSize="11"
+                                            FontWeight="Bold"
+                                            Height="35"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            BorderThickness="0"
+                                            Cursor="Hand"
+                                            Click="SendFeedbackButton_Click"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Информация об обновлениях -->
+                    <Border Background="#1A1A2E" CornerRadius="12" Padding="20"
+                            BorderThickness="1" BorderBrush="#FF6B6B">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Viewbox Width="24" Height="24" Margin="0,0,10,0">
+                                    <TextBlock Text="🔄" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelUpdatesTitle]}"
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           Foreground="#FF6B6B"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelUpdatesContent]}"
+                                       FontSize="10"
+                                       Foreground="#CCCCCC"
+                                       TextWrapping="Wrap"
+                                       LineHeight="16"
+                                       Margin="0,0,0,10"/>
+                            <Viewbox Width="60" Height="50" HorizontalAlignment="Center" Margin="0,10,0,0">
+                                <TextBlock Text="ᕦ(ツ)ᕤ" Foreground="#888888"/>
+                            </Viewbox>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Нижний текст -->
+            <Border Grid.Row="2" Background="Transparent" Margin="0,15,0,0">
+                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HelpPanelFooter]}"
+                           Foreground="#888888"
+                           FontSize="9"
+                           FontStyle="Italic"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"/>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
+

@@ -1,0 +1,106 @@
+﻿<Window x:Class="Black_Hole_Cross.SplashScreen"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Black Hole"
+        SystemDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        Width="300"
+        Height="300"
+        CanResize="False"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen">
+
+    <Border Background="#FF0A0A0A"
+            CornerRadius="20"
+            BorderBrush="#404040"
+            BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" Opacity="0.8" Color="Black"/>
+        </Border.Effect>
+
+        <Grid x:Name="MainGrid">
+          
+            <Ellipse x:Name="BlackHole"
+                     Width="120"
+                     Height="120"
+                     RenderTransformOrigin="0.5,0.5"
+                     Opacity="0">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#202020" Offset="0.3"/>
+                        <GradientStop Color="#404040" Offset="0.7"/>
+                        <GradientStop Color="#606060" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-15"/>
+                        <ScaleTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+                <Ellipse.Effect>
+                    <DropShadowEffect Color="White" BlurRadius="20" Opacity="0.3" OffsetX="0" OffsetY="0"/>
+                </Ellipse.Effect>
+            </Ellipse>
+
+            <!-- Аккреционный диск (черно-белый) -->
+            <Ellipse x:Name="AccretionDisk"
+                     Width="180"
+                     Height="60"
+                     Opacity="0"
+                     RenderTransformOrigin="0.5,0.5">
+                <Ellipse.Fill>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="Transparent" Offset="0"/>
+                        <GradientStop Color="#40FFFFFF" Offset="0.3"/>
+                        <GradientStop Color="#80FFFFFF" Offset="0.5"/>
+                        <GradientStop Color="#40FFFFFF" Offset="0.7"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-15"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+            <!-- Текст Black Hole -->
+            <TextBlock x:Name="TitleText"
+                       Text="BLACK HOLE"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Opacity="0"
+                       RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <ScaleTransform/>
+                </TextBlock.RenderTransform>
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="White" BlurRadius="10" Opacity="0.5" OffsetX="0" OffsetY="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <!-- Приветствие -->
+            <TextBlock x:Name="WelcomeText"
+                       Text=""
+                       Foreground="#CCCCCC"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,80"
+                       Opacity="0"
+                       TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="5" Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+    </Border>
+</Window>

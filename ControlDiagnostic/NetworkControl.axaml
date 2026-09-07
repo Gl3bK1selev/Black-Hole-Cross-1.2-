@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.NetworkControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             d:DesignHeight="850" d:DesignWidth="900">
+
+    <UserControl.Styles>
+        <Style Selector="Border.NetCard">
+            <Setter Property="Background" Value="#121215"/>
+            <Setter Property="BorderBrush" Value="#26262E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+        <Style Selector="Button.ActionBtn">
+            <Setter Property="Background" Value="#1F1F26"/>
+            <Setter Property="Foreground" Value="#00E5FF"/>
+            <Setter Property="BorderBrush" Value="#00E5FF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,8"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer Background="#09090B">
+        <StackPanel Margin="24">
+
+           
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,20">
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="NETWORK DIAGNOSTICS &amp; TWEAKS" FontSize="22" FontWeight="Black" Foreground="#00E5FF"/>
+                    <TextBlock Text="Мониторинг трафика, замер пинга и быстрые оптимизации сети" FontSize="11" Foreground="#71717A"/>
+                </StackPanel>
+                <Border Grid.Column="1" Background="#182A27" BorderBrush="#00FF88" BorderThickness="1" CornerRadius="20" Padding="12,4" VerticalAlignment="Center">
+                    <TextBlock x:Name="StatusBadge" Text="● ADAPTER ONLINE" Foreground="#00FF88" FontSize="11" FontWeight="Bold"/>
+                </Border>
+            </Grid>
+
+            <!-- 1. Информационные карточки -->
+            <Grid ColumnDefinitions="*,*,*,*" Margin="0,0,0,12">
+                <Border Grid.Column="0" Classes="NetCard" Margin="0,0,4,0">
+                    <StackPanel>
+                        <TextBlock Text="LOCAL IP" FontSize="9" Foreground="#71717A" FontWeight="Bold"/>
+                        <TextBlock x:Name="LocalIpText" Text="192.168.1.100" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="MacText" Text="MAC: 00:00:00:00" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                        <TextBlock x:Name="SubnetText" Text="Subnet: 255.255.255.0" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Classes="NetCard" Margin="2,0,2,0">
+                    <StackPanel>
+                        <TextBlock Text="PUBLIC IP" FontSize="9" Foreground="#71717A" FontWeight="Bold"/>
+                        <TextBlock x:Name="PublicIpText" Text="Checking..." FontSize="13" FontWeight="Bold" Foreground="#00E5FF" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="IpLocationText" Text="📍 Location..." FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                        <TextBlock x:Name="IspText" Text="ISP: Detecting..." FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Classes="NetCard" Margin="2,0,2,0">
+                    <StackPanel>
+                        <TextBlock Text="LATENCY / JITTER" FontSize="9" Foreground="#71717A" FontWeight="Bold"/>
+                        <TextBlock x:Name="PingText" Text="-- ms" FontSize="13" FontWeight="Bold" Foreground="#00FF88" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="JitterText" Text="Jitter: 0 ms" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                        <TextBlock x:Name="PacketLossText" Text="Loss: 0%" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Classes="NetCard" Margin="4,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="SYSTEM &amp; GATEWAY" FontSize="9" Foreground="#71717A" FontWeight="Bold"/>
+                        <TextBlock x:Name="GatewayText" Text="192.168.1.1" FontSize="13" FontWeight="Bold" Foreground="#FFC107" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="UptimeText" Text="⏱ 0d 0h 0m" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                        <TextBlock x:Name="DhcpStatusText" Text="DHCP: Enabled" FontSize="9" Foreground="#52525B" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- 2. Real-Time Монитор Скорости -->
+            <Border Classes="NetCard">
+                <StackPanel>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+                        <TextBlock Text="📊 REAL-TIME TRAFFIC MONITOR" FontSize="12" FontWeight="Bold" Foreground="#FFC107"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock x:Name="TotalDownText" Text="↓ 0 MB" FontSize="11" Foreground="#00FF88" Margin="0,0,16,0"/>
+                            <TextBlock x:Name="TotalUpText" Text="↑ 0 MB" FontSize="11" Foreground="#00E5FF"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*">
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="DOWNLOAD SPEED" FontSize="10" Foreground="#A1A1AA"/>
+                                <TextBlock x:Name="DownSpeedText" Grid.Column="1" Text="0.0 KB/s" FontSize="12" FontWeight="Bold" Foreground="#00FF88"/>
+                            </Grid>
+                            <ProgressBar x:Name="DownProgress" Height="8" Minimum="0" Maximum="10000" Foreground="#00FF88" Background="#1F1F24" Margin="0,8,0,0" CornerRadius="4"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="UPLOAD SPEED" FontSize="10" Foreground="#A1A1AA"/>
+                                <TextBlock x:Name="UpSpeedText" Grid.Column="1" Text="0.0 KB/s" FontSize="12" FontWeight="Bold" Foreground="#00E5FF"/>
+                            </Grid>
+                            <ProgressBar x:Name="UpProgress" Height="8" Minimum="0" Maximum="10000" Foreground="#00E5FF" Background="#1F1F24" Margin="0,8,0,0" CornerRadius="4"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- 3. Оптимизация и DNS Твики -->
+            <Border Classes="NetCard">
+                <StackPanel>
+                    <TextBlock Text="⚡ NETWORK REPAIR &amp; GAMING TWEAKS" FontSize="12" FontWeight="Bold" Foreground="#00E5FF" Margin="0,0,0,16"/>
+
+                    <!-- Выбор сетевого интерфейса -->
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="Active Network Adapter" Foreground="White" FontWeight="SemiBold"/>
+                            <TextBlock Text="Выберите адаптер для применения сетевых настроек" FontSize="10" Foreground="#71717A"/>
+                        </StackPanel>
+                        <ComboBox Grid.Column="1" x:Name="NetworkCombo" Height="38" Width="220" SelectionChanged="OnNetworkInterfaceChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" VerticalAlignment="Center" FontSize="12"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+
+                    <Separator Background="#26262E" Margin="0,4,0,12"/>
+
+                    <!-- Flush DNS -->
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="Flush DNS &amp; Winsock Reset" Foreground="White" FontWeight="SemiBold"/>
+                            <TextBlock Text="Сброс кэша доменов и сокетов Windows для устранения сетевых заторов" FontSize="10" Foreground="#71717A"/>
+                        </StackPanel>
+                        <Button Grid.Column="1" Classes="ActionBtn" Content="Flush &amp; Reset" Click="OnFlushDnsClick"/>
+                    </Grid>
+
+                    <Separator Background="#26262E" Margin="0,4,0,12"/>
+
+                    <!-- Full Network Reset -->
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="Full Network Adapter Repair" Foreground="White" FontWeight="SemiBold"/>
+                            <TextBlock Text="Перезапуск DHCP, сброс сетевой карты и полное обновление IP" FontSize="10" Foreground="#71717A"/>
+                        </StackPanel>
+                        <Button Grid.Column="1" Classes="ActionBtn" Content="Repair Adapter" Click="OnFullRepairClick"/>
+                    </Grid>
+
+                    <Separator Background="#26262E" Margin="0,4,0,12"/>
+
+                    <!-- TCP Tuning -->
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                        <StackPanel>
+                            <TextBlock Text="TCP Optimizer for Gaming" Foreground="White" FontWeight="SemiBold"/>
+                            <TextBlock Text="Оптимизация параметров TCP/IP для снижения пинга и задержек" FontSize="10" Foreground="#71717A"/>
+                        </StackPanel>
+                        <Button Grid.Column="1" Classes="ActionBtn" Content="Optimize TCP" Click="OnTcpTuningClick"/>
+                    </Grid>
+
+                    <Separator Background="#26262E" Margin="0,4,0,12"/>
+
+                    <!-- Gaming DNS Switcher -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel>
+                            <TextBlock Text="Fast Gaming DNS Switcher" Foreground="White" FontWeight="SemiBold"/>
+                            <TextBlock Text="Переключение на быстрый DNS для снижения пинга в играх" FontSize="10" Foreground="#71717A"/>
+                        </StackPanel>
+                        <ComboBox Grid.Column="1" x:Name="DnsCombo" SelectedIndex="0" Width="220" Height="38" SelectionChanged="OnDnsChanged">
+                            <ComboBoxItem Content="Default (System DHCP)"/>
+                            <ComboBoxItem Content="Cloudflare (1.1.1.1)"/>
+                            <ComboBoxItem Content="Google (8.8.8.8)"/>
+                            <ComboBoxItem Content="AdGuard (Anti-Ads)"/>
+                            <ComboBoxItem Content="Quad9 (9.9.9.9)"/>
+                            <ComboBoxItem Content="OpenDNS (208.67.222.222)"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <!-- Лог выполнения действий -->
+                    <Border Background="#16161A" CornerRadius="6" Padding="10" Margin="0,16,0,0">
+                        <TextBlock x:Name="ActionLogText" Text="Статус: Система готова к работе." FontSize="11" Foreground="#A1A1AA"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

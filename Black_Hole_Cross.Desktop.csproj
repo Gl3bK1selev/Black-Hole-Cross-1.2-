@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>Assets/BlackHoleICON.ico</ApplicationIcon>
+		<ApplicationLogo>Assets/BlackHoleICON.png</ApplicationLogo>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	
+		
+	</PropertyGroup>
+	<ItemGroup>
+		<AvaloniaResource Include="Assets/BlackHoleICON.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</AvaloniaResource>
+		<Content Include="Images/Black_holeListBox.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\Black_Hole_Cross\Localization\*.json">
+			<Link>Localization\%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+	
+	
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.1.3" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.1.3" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.3" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Ссылка на главный проект, где объявляется класс App -->
+		<ProjectReference Include="..\Black_Hole_Cross\Black_Hole_Cross.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AvaloniaResource Update="Assets/BlackHoleICON.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </AvaloniaResource>
+	</ItemGroup>
+</Project>

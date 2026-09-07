@@ -1,0 +1,102 @@
+﻿<Window x:Class="Black_Hole_Cross.OnboardingWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Black Hole • Добро пожаловать"
+        Height="550"
+        Width="850"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Background="Transparent"
+        SystemDecorations="None"
+        Topmost="True">
+
+    <Window.Styles>
+      
+        <Style Selector="Button.CyberPrimary">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                        <GradientStop Color="#00E5FF" Offset="0.0"/>
+                        <GradientStop Color="#7C4DFF" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="32,12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.CyberPrimary:pointerover">
+            <Setter Property="Opacity" Value="0.88"/>
+        </Style>
+
+       
+        <Style Selector="Button.CyberSecondary">
+            <Setter Property="Background" Value="#12121A"/>
+            <Setter Property="Foreground" Value="#A1A1AA"/>
+            <Setter Property="BorderBrush" Value="#27273A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="24,12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.CyberSecondary:pointerover">
+            <Setter Property="Background" Value="#1C1C28"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#00E5FF"/>
+        </Style>
+    </Window.Styles>
+
+    <!-- Корпус окна с неоновой рамкой -->
+    <Border CornerRadius="20" ClipToBounds="True" BorderThickness="1.5">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#00E5FF" Offset="0.0"/>
+                <GradientStop Color="#121215" Offset="0.5"/>
+                <GradientStop Color="#7C4DFF" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <RadialGradientBrush Center="50%,45%" RadiusX="80%" RadiusY="80%">
+                <GradientStop Color="#121218" Offset="0.0"/>
+                <GradientStop Color="#060609" Offset="1.0"/>
+            </RadialGradientBrush>
+        </Border.Background>
+
+        <Grid Margin="40" RowDefinitions="*,Auto,Auto">
+
+            <!-- Контейнер текущего слайда -->
+            <StackPanel x:Name="SlideContainer"
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+            <!-- Точки прогресса слайдов -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal"
+                        HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Ellipse x:Name="Dot1" Width="10" Height="10" Margin="6" Fill="#00E5FF"/>
+                <Ellipse x:Name="Dot2" Width="10" Height="10" Margin="6" Fill="#27273A"/>
+                <Ellipse x:Name="Dot3" Width="10" Height="10" Margin="6" Fill="#27273A"/>
+                <Ellipse x:Name="Dot4" Width="10" Height="10" Margin="6" Fill="#27273A"/>
+            </StackPanel>
+
+            <!-- Кнопки управления -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal"
+                        HorizontalAlignment="Center" Margin="0,25,0,0">
+                <Button x:Name="BackButton" Content="◀ НАЗАД"
+                        Classes="CyberSecondary"
+                        Click="BackButton_Click"
+                        IsVisible="False"/>
+                <Button x:Name="NextButton" Content="ДАЛЕЕ ▶"
+                        Classes="CyberPrimary"
+                        Click="NextButton_Click"
+                        Margin="16,0,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,73 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Black_Hole_Cross.Panels.DiagnosticPanel">
+
+    <UserControl.Styles>
+        <Style Selector="Button.SegBtn">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="24,14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.SegBtn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource HoverBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+        </Style>
+
+        <Style Selector="Button.SegBtn.active /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+     
+        <Canvas x:Name="EffectsCanvas" Grid.RowSpan="3" IsHitTestVisible="False"/>
+
+      
+        <Border Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,10,0,15"
+                Background="{DynamicResource MenuBg}"
+                BorderBrush="{DynamicResource MenuBorder}"
+                BorderThickness="1.5"
+                CornerRadius="20"
+                Padding="0"
+                BoxShadow="0 8 20 0 #30000000">
+            <StackPanel x:Name="TabButtonsPanel" Orientation="Horizontal" Spacing="0">
+                <Button Classes="SegBtn active" CornerRadius="18,0,0,18" Content="CPU" Click="CpuButton_Click" Tag="CPU"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="RAM" Click="RAMButton_Click" Tag="RAM"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="Disks" Click="DiskButton_Click" Tag="Disks"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="GPU" Click="GPUButton_Click" Tag="GPU"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="MotherBoard" Click="MBButton_Click" Tag="MotherBoard"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="Keyboard" Click="KeyboardButton_Click" Tag="Keyboard"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="Mouse" Click="MouseButton_Click" Tag="Mouse"/>
+                <Button Classes="SegBtn" CornerRadius="0" Content="Audio" Click="FANButton_Click" Tag="FAN"/>
+                <Button Classes="SegBtn" CornerRadius="0,18,18,0" Content="Network" Click="NetworkButton_Click" Tag="Network"/>
+            </StackPanel>
+        </Border>
+
+   
+        <TextBlock x:Name="GreetingText"
+                   Grid.Row="1"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   Foreground="{DynamicResource TextPrimary}"
+                   HorizontalAlignment="Center"
+                   Margin="0,5,0,15"
+                   Opacity="0"/>
+
+      
+        <ContentControl x:Name="TabContentArea"
+                        Grid.Row="2"
+                        Margin="15"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+    </Grid>
+</UserControl>

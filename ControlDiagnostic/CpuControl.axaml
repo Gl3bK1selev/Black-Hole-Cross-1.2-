@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.CpuControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Padding="5">
+        <StackPanel>
+            <TextBlock x:Name="Diagnos"
+                       Text="Диагностика CPU"
+                       FontSize="50"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       Margin="0,60,0,0"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock x:Name="ModelAndManuf"
+                       Text="Модель и производитель: "
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,0,0,0" />
+
+            <TextBlock x:Name="CpuInfo"
+                       FontSize="18"
+                       Foreground="White"
+                       Margin="10" />
+
+            <TextBlock x:Name="LoadCpu"
+                       Text="Загрузка процессора"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,0,0,0" />
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="PauseButton"
+                        Content="Пауза ⏸️"
+                        Foreground="White"
+                        Background="#2A2A2A"
+                        Padding="15,5"
+                        CornerRadius="8"
+                        Margin="625,0,0,0"
+                        Click="PauseButton_Click"/>
+            </StackPanel>
+
+            <lvc:CartesianChart x:Name="CPUChart"
+                                Foreground="White"
+                                Height="350">
+            </lvc:CartesianChart>
+
+            <TextBlock x:Name="FrequenCpu"
+                       Text="Частота процессора "
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,0,0,0" />
+
+            <lvc:CartesianChart x:Name="CPUChartFrequency"
+                                Foreground="White"
+                                Height="350">
+            </lvc:CartesianChart>
+
+            <TextBlock x:Name="UseCpu"
+                       Text="Использование по каждому ядру"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,0,0,0" />
+
+            <lvc:CartesianChart x:Name="CPUChartCore"
+                                Foreground="White"
+                                Height="350">
+            </lvc:CartesianChart>
+
+            <TextBlock Text="Температура процессора °C"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,0,0,0" />
+
+            <lvc:CartesianChart x:Name="CPUChartTemp"
+                                Height="350"
+                                Foreground="White">
+            </lvc:CartesianChart>
+            <!-- Напряжение процессора -->
+            <TextBlock Text="Напряжение процессора (В)"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,10,0,0" />
+
+            <lvc:CartesianChart x:Name="CPUChartVoltage"
+                                Height="350"
+                                Foreground="White">
+            </lvc:CartesianChart>
+
+            <!-- Потребляемая мощность (TDP) -->
+            <TextBlock Text="Энергопотребление процессора (Вт)"
+                       FontSize="20"
+                       Foreground="White"
+                       Margin="20,10,0,0" />
+
+            <lvc:CartesianChart x:Name="CPUChartPower"
+                                Height="350"
+                                Foreground="White">
+            </lvc:CartesianChart>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.KeyboardControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="750" d:DesignWidth="1000">
+
+    <UserControl.Styles>
+        <Style Selector="Border.KeyCap">
+            <Setter Property="Background" Value="#252526"/>
+            <Setter Property="BorderBrush" Value="#454545"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Width" Value="42"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style Selector="TextBlock.KeyText">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.ResetBtn">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+
+            <!-- Заголовок -->
+            <TextBlock Text="Диагностика клавиатуры"
+                       x:Name="DiagnosKeyboard"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,5,0,5"/>
+
+            <TextBlock x:Name="descrip"
+                       Text="Интерактивное тестирование клавиш (Key Test &amp; Anti-Ghosting)"
+                       FontSize="14"
+                       Foreground="{DynamicResource TextSecondary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,15"/>
+
+          
+            <Border Background="#252526" BorderBrush="#3E3E42" BorderThickness="1" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                <Grid ColumnDefinitions="*, Auto">
+                    <StackPanel Grid.Column="0">
+                        <TextBlock x:Name="LastKeyText" Text="Нажимайте клавиши на физической клавиатуре..." FontSize="16" FontWeight="Bold" Foreground="#00BCD4" Margin="0,0,0,5"/>
+                        <TextBlock x:Name="ActiveKeysText" Text="Активно клавиш: 0" FontSize="13" Foreground="#AAAAAA"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="🔄 Сбросить тест" Classes="ResetBtn" Click="ResetTest_Click"/>
+                </Grid>
+            </Border>
+
+          
+            <Border Background="#1E1E1E" BorderBrush="#333333" BorderThickness="2" CornerRadius="12" Padding="15" HorizontalAlignment="Center">
+                <StackPanel Spacing="4">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_Esc" Classes="KeyCap"><TextBlock Text="ESC" Classes="KeyText" Foreground="#FF5722"/></Border>
+                        <Rectangle Width="20"/>
+                        <Border x:Name="Key_F1" Classes="KeyCap"><TextBlock Text="F1" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F2" Classes="KeyCap"><TextBlock Text="F2" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F3" Classes="KeyCap"><TextBlock Text="F3" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F4" Classes="KeyCap"><TextBlock Text="F4" Classes="KeyText"/></Border>
+                        <Rectangle Width="15"/>
+                        <Border x:Name="Key_F5" Classes="KeyCap"><TextBlock Text="F5" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F6" Classes="KeyCap"><TextBlock Text="F6" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F7" Classes="KeyCap"><TextBlock Text="F7" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F8" Classes="KeyCap"><TextBlock Text="F8" Classes="KeyText"/></Border>
+                        <Rectangle Width="15"/>
+                        <Border x:Name="Key_F9" Classes="KeyCap"><TextBlock Text="F9" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F10" Classes="KeyCap"><TextBlock Text="F10" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F11" Classes="KeyCap"><TextBlock Text="F11" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F12" Classes="KeyCap"><TextBlock Text="F12" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                    <Rectangle Height="8"/>
+
+                  
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_Grave" Classes="KeyCap"><TextBlock Text="`" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_1" Classes="KeyCap"><TextBlock Text="1" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_2" Classes="KeyCap"><TextBlock Text="2" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_3" Classes="KeyCap"><TextBlock Text="3" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_4" Classes="KeyCap"><TextBlock Text="4" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_5" Classes="KeyCap"><TextBlock Text="5" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_6" Classes="KeyCap"><TextBlock Text="6" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_7" Classes="KeyCap"><TextBlock Text="7" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_8" Classes="KeyCap"><TextBlock Text="8" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_9" Classes="KeyCap"><TextBlock Text="9" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_0" Classes="KeyCap"><TextBlock Text="0" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Back" Classes="KeyCap" Width="88"><TextBlock Text="Backspace" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_Tab" Classes="KeyCap" Width="60"><TextBlock Text="Tab" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Q" Classes="KeyCap"><TextBlock Text="Q" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_W" Classes="KeyCap"><TextBlock Text="W" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_E" Classes="KeyCap"><TextBlock Text="E" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_R" Classes="KeyCap"><TextBlock Text="R" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_T" Classes="KeyCap"><TextBlock Text="T" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Y" Classes="KeyCap"><TextBlock Text="Y" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_U" Classes="KeyCap"><TextBlock Text="U" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_I" Classes="KeyCap"><TextBlock Text="I" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_O" Classes="KeyCap"><TextBlock Text="O" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_P" Classes="KeyCap"><TextBlock Text="P" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_Caps" Classes="KeyCap" Width="72"><TextBlock Text="Caps" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_A" Classes="KeyCap"><TextBlock Text="A" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_S" Classes="KeyCap"><TextBlock Text="S" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_D" Classes="KeyCap"><TextBlock Text="D" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_F" Classes="KeyCap"><TextBlock Text="F" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_G" Classes="KeyCap"><TextBlock Text="G" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_H" Classes="KeyCap"><TextBlock Text="H" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_J" Classes="KeyCap"><TextBlock Text="J" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_K" Classes="KeyCap"><TextBlock Text="K" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_L" Classes="KeyCap"><TextBlock Text="L" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Enter" Classes="KeyCap" Width="78"><TextBlock Text="Enter" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_LShift" Classes="KeyCap" Width="92"><TextBlock Text="Shift" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Z" Classes="KeyCap"><TextBlock Text="Z" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_X" Classes="KeyCap"><TextBlock Text="X" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_C" Classes="KeyCap"><TextBlock Text="C" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_V" Classes="KeyCap"><TextBlock Text="V" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_B" Classes="KeyCap"><TextBlock Text="B" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_N" Classes="KeyCap"><TextBlock Text="N" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_M" Classes="KeyCap"><TextBlock Text="M" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_RShift" Classes="KeyCap" Width="100"><TextBlock Text="Shift" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Border x:Name="Key_LCtrl" Classes="KeyCap" Width="52"><TextBlock Text="Ctrl" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_LAlt" Classes="KeyCap" Width="52"><TextBlock Text="Alt" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_Space" Classes="KeyCap" Width="260"><TextBlock Text="Space" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_RAlt" Classes="KeyCap" Width="52"><TextBlock Text="Alt" Classes="KeyText"/></Border>
+                        <Border x:Name="Key_RCtrl" Classes="KeyCap" Width="52"><TextBlock Text="Ctrl" Classes="KeyText"/></Border>
+
+                        <Rectangle Width="25"/>
+                       
+                        <Border x:Name="Key_Left" Classes="KeyCap"><TextBlock Text="◀" Classes="KeyText"/></Border>
+                        <StackPanel>
+                            <Border x:Name="Key_Up" Classes="KeyCap" Height="20"><TextBlock Text="▲" Classes="KeyText" FontSize="9"/></Border>
+                            <Border x:Name="Key_Down" Classes="KeyCap" Height="20"><TextBlock Text="▼" Classes="KeyText" FontSize="9"/></Border>
+                        </StackPanel>
+                        <Border x:Name="Key_Right" Classes="KeyCap"><TextBlock Text="▶" Classes="KeyText"/></Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+            <Border Height="1" Background="#333333" Margin="20,20,20,15"/>
+
+         
+            <Border Background="#252526" BorderBrush="#3E3E42" BorderThickness="1" CornerRadius="10" Padding="15">
+                <TextBlock x:Name="InfoText" FontSize="14" Foreground="White" LineHeight="22"/>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

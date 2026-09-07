@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.MouseControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="750" d:DesignWidth="950">
+
+    <UserControl.Styles>
+        <Style Selector="Border.MousePart">
+            <Setter Property="Background" Value="#252526"/>
+            <Setter Property="BorderBrush" Value="#454545"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+
+        <Style Selector="TextBlock.PartText">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+
+            <!-- Заголовок -->
+            <TextBlock Text="Диагностика мыши"
+                       x:Name="DiagnosMouse"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,5,0,5"/>
+
+            <TextBlock x:Name="descrip"
+                       Text="Проверка кликов, колеса прокрутки, координат и отклика"
+                       FontSize="14"
+                       Foreground="{DynamicResource TextSecondary}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,15"/>
+
+           
+            <Border x:Name="TestArea"
+                    Background="#1E1E1E"
+                    BorderBrush="#007ACC"
+                    BorderThickness="2"
+                    CornerRadius="12"
+                    Padding="20"
+                    Height="320"
+                    Margin="0,0,0,15">
+                <Grid ColumnDefinitions="*, Auto">
+
+                    
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="10">
+                        <TextBlock x:Name="LastActionText" Text="Кликните мышью в этой области..." FontSize="18" FontWeight="Bold" Foreground="#00BCD4"/>
+                        <TextBlock x:Name="CoordsText" Text="X: 0 px | Y: 0 px" FontSize="15" Foreground="#FFC107"/>
+                        <TextBlock x:Name="ScrollText" Text="Скролл: Ожидание..." FontSize="14" Foreground="#9C27B0"/>
+                        <TextBlock x:Name="ClickCountText" Text="Всего кликов: 0" FontSize="14" Foreground="#4CAF50"/>
+                        
+                        <Button Content="🔄 Сбросить тест"
+                                Background="#333333"
+                                Foreground="White"
+                                CornerRadius="6"
+                                Padding="10,5"
+                                HorizontalAlignment="Left"
+                                Click="ResetTest_Click"
+                                Margin="0,10,0,0"/>
+                    </StackPanel>
+
+                    <!-- Макет мыши справа -->
+                    <Border Grid.Column="1" Width="180" Height="260" Background="#141414" BorderBrush="#333333" BorderThickness="2" CornerRadius="40" Padding="10">
+                        <Canvas>
+                            <!-- Левая кнопка (LMB) -->
+                            <Border x:Name="BtnLeft" Classes="MousePart" Canvas.Left="15" Canvas.Top="15" Width="65" Height="80" CornerRadius="20,5,5,5">
+                                <TextBlock Text="ЛКМ" Classes="PartText"/>
+                            </Border>
+
+                            <!-- Колесико (MMB) -->
+                            <Border x:Name="BtnMiddle" Classes="MousePart" Canvas.Left="83" Canvas.Top="25" Width="14" Height="45" CornerRadius="6">
+                                <TextBlock Text="⚙️" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <!-- Правая кнопка (RMB) -->
+                            <Border x:Name="BtnRight" Classes="MousePart" Canvas.Left="100" Canvas.Top="15" Width="65" Height="80" CornerRadius="5,20,5,5">
+                                <TextBlock Text="ПКМ" Classes="PartText"/>
+                            </Border>
+
+                            <!-- Боковые кнопки -->
+                            <Border x:Name="BtnForward" Classes="MousePart" Canvas.Left="2" Canvas.Top="105" Width="10" Height="30">
+                                <TextBlock Text="▲" FontSize="7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border x:Name="BtnBack" Classes="MousePart" Canvas.Left="2" Canvas.Top="140" Width="10" Height="30">
+                                <TextBlock Text="▼" FontSize="7" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <!-- Корпус -->
+                            <Border Classes="MousePart" Canvas.Left="15" Canvas.Top="100" Width="150" Height="140" CornerRadius="10,10,35,35" Background="#1A1A1D">
+                                <TextBlock Text="MOUSE" Classes="PartText" Foreground="#444444" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+                            </Border>
+                        </Canvas>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Background="#252526" BorderBrush="#3E3E42" BorderThickness="1" CornerRadius="10" Padding="15">
+                <TextBlock x:Name="InfoText" FontSize="14" Foreground="White" LineHeight="22"/>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

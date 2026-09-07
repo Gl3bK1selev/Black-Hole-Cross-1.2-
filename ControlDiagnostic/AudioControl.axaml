@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="Black_Hole_Cross.ControlDiagnostic.AudioControl"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="1000" d:DesignWidth="980">
+
+    <UserControl.Styles>
+        <Style Selector="Border.NugenCard">
+            <Setter Property="Background" Value="#141416"/>
+            <Setter Property="BorderBrush" Value="#2A2A30"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="14"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style Selector="ProgressBar.SpectrumBar">
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="140"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0%,100%" EndPoint="0%,0%">
+                        <GradientStop Color="#00E676" Offset="0.0"/>
+                        <GradientStop Color="#FFEA00" Offset="0.75"/>
+                        <GradientStop Color="#FF1744" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#08080A"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#0C0C0E">
+        <StackPanel Margin="18">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,4">
+                <TextBlock Text="NUGEN " FontSize="26" FontWeight="Black" Foreground="#FFC107"/>
+                <TextBlock x:Name="DiagnosAudio" Text="AUDIO VISUALIZER &amp; DSP" FontSize="26" FontWeight="Bold" Foreground="#FFFFFF"/>
+            </StackPanel>
+            <TextBlock x:Name="descrip" Text="Профессиональный анализатор спектра и процессор голоса" FontSize="12" Foreground="#666677" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+          
+            <Border Background="#101012" BorderBrush="#D4A373" BorderThickness="1.5" CornerRadius="4" Padding="12" Margin="0,0,0,12">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    
+                  
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,8">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Button Content="Clear" Padding="8,2" FontSize="10" Background="#222" Foreground="White" Margin="0,0,5,0"/>
+                            <Button Content="↔" Padding="6,2" FontSize="10" Background="#FFC107" Foreground="Black"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="1" Text="NUGEN Audio Visualizer" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#DDDDDD"/>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock x:Name="DbText" Text="-45.0 dBFS" Foreground="#00FF88" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <Button Content="Link" Padding="8,2" FontSize="10" Background="#FFC107" Foreground="Black"/>
+                        </StackPanel>
+                    </Grid>
+
+                  
+                    <Border Grid.Row="1" Background="#050505" BorderBrush="#333" BorderThickness="1" Height="200">
+                        <Grid ColumnDefinitions="45,*">
+                           
+                            <StackPanel Grid.Column="0" VerticalAlignment="Stretch" Margin="4,2,0,2">
+                                <TextBlock Text="-0.0dB" FontSize="8" Foreground="#888" Margin="0,0,0,10"/>
+                                <TextBlock Text="-15.0dB" FontSize="8" Foreground="#888" Margin="0,0,0,10"/>
+                                <TextBlock Text="-30.0dB" FontSize="8" Foreground="#888" Margin="0,0,0,10"/>
+                                <TextBlock Text="-50.0dB" FontSize="8" Foreground="#888" Margin="0,0,0,10"/>
+                                <TextBlock Text="-75.0dB" FontSize="8" Foreground="#888" Margin="0,0,0,10"/>
+                                <TextBlock Text="-95.0dB" FontSize="8" Foreground="#888"/>
+                            </StackPanel>
+
+                            
+                            <Grid Grid.Column="1">
+                               
+                                <Rectangle Fill="#080808"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5">
+                                    <ProgressBar x:Name="Bar1" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar2" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar3" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar4" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar5" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar6" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar7" Classes="SpectrumBar"/>
+                                    <ProgressBar x:Name="Bar8" Classes="SpectrumBar"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                  
+                    <Grid Grid.Row="2" Margin="0,8,0,0" RowDefinitions="Auto,Auto">
+                        <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*" Margin="45,0,0,4">
+                            <TextBlock Text="30" FontSize="9" Foreground="#666"/>
+                            <TextBlock Grid.Column="1" Text="200" FontSize="9" Foreground="#666"/>
+                            <TextBlock Grid.Column="2" Text="800" FontSize="9" Foreground="#666"/>
+                            <TextBlock Grid.Column="3" Text="2.0k" FontSize="9" Foreground="#666"/>
+                            <TextBlock Grid.Column="4" Text="5.0k" FontSize="9" Foreground="#666"/>
+                            <TextBlock Grid.Column="5" Text="20.0k" FontSize="9" Foreground="#666"/>
+                        </Grid>
+
+                      
+                        <Grid Grid.Row="1" RowDefinitions="*,*" Margin="0,2,0,0">
+                            <ProgressBar x:Name="MicVolumeProgress" Height="8" Minimum="0" Maximum="100" Foreground="#00E676" Background="#111" Margin="0,0,0,2"/>
+                            <ProgressBar Grid.Row="1" x:Name="OutputVolumeProgress" Height="8" Minimum="0" Maximum="100" Foreground="#00E676" Background="#111"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border Classes="NugenCard">
+                <StackPanel>
+                    <TextBlock Text="VOICE DSP FX CONTROLLER" FontSize="12" FontWeight="Bold" Foreground="#FFC107" Margin="0,0,0,10"/>
+
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                        <TextBlock Text="Пресет голоса:" VerticalAlignment="Center" Foreground="White"/>
+                        <ComboBox Grid.Column="1" x:Name="VoicePresetCombo" Width="280" SelectionChanged="OnVoicePresetChanged"/>
+                    </Grid>
+
+                    
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,2">
+                        <TextBlock Text="Глубина эффекта (Wet / Dry Mix):" Foreground="White" FontSize="11"/>
+                        <TextBlock Grid.Column="1" Text="{Binding #WetSlider.Value, StringFormat={}{0:0%}}" Foreground="#00FF88" FontSize="11"/>
+                    </Grid>
+                    <Slider x:Name="WetSlider" Minimum="0.0" Maximum="1.0" Value="0.7" ValueChanged="OnWetMixChanged" Margin="0,0,0,10"/>
+
+                    <Separator Background="#222" Margin="0,0,0,10"/>
+
+                 
+                    <UniformGrid Columns="3">
+                        <CheckBox x:Name="LoopbackToggle" Content="Слышать себя" Click="OnLoopbackToggleChanged"/>
+                        <CheckBox x:Name="NoiseToggle" Content="Noise Gate" Click="OnNoiseToggleChanged"/>
+                        <CheckBox x:Name="CompressorToggle" Content="Limiter" Click="OnCompressorToggleChanged"/>
+                    </UniformGrid>
+
+                    <StackPanel Margin="0,8,0,0">
+                        <TextBlock Text="Шумоподавление Threshold:" FontSize="10" Foreground="#888"/>
+                        <Slider x:Name="GateSlider" Minimum="5" Maximum="100" Value="25"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+           
+            <Border Classes="NugenCard">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Master Gain:" Foreground="White" FontSize="12"/>
+                        <Slider x:Name="MasterSlider" Minimum="0.2" Maximum="2.5" Value="1.0" ValueChanged="OnMasterGainChanged" Width="300" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="PlaybackDeviceText" Text="Audio Active" FontSize="11" Foreground="#888"/>
+                        <TextBlock x:Name="RecordDeviceText" Text="Mic Active" FontSize="11" Foreground="#888"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

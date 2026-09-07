@@ -1,0 +1,118 @@
+﻿<Window x:Class="Black_Hole_Cross.BirthdayLetterWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:services="clr-namespace:Black_Hole_Cross.Services"
+        Title="🎂 С Днем Рождения!"
+        SystemDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        x:CompileBindings="False">
+
+    <Grid>
+      
+        <Grid x:Name="BackgroundBlur">
+            <Grid.Effect>
+                <BlurEffect Radius="20"/>
+            </Grid.Effect>
+            <Rectangle Fill="#801A1A2E"/>
+        </Grid>
+
+       
+        <Canvas x:Name="MainCanvas" Background="Transparent">
+            
+            <Canvas x:Name="NumbersCanvas" Background="Transparent"/>
+
+           
+            <Canvas x:Name="ConfettiCanvas" Background="Transparent"/>
+
+           
+            <Canvas x:Name="BalloonsCanvas" Background="Transparent"/>
+        </Canvas>
+
+    
+        <Border x:Name="LetterBorder"
+                Background="White"
+                CornerRadius="20"
+                BorderThickness="3"
+                BorderBrush="Gold"
+                Width="400" Height="500"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BoxShadow="0 0 50 0 #FFD700">
+
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+             
+                <Border Grid.Row="0" Background="Gold" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                    <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BirthdayTitle]}"
+                               Foreground="Black"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                </Border>
+
+              
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <!-- Возраст -->
+                        <TextBlock x:Name="AgeText"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Foreground="#333"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,15"/>
+
+                        <!-- Пожелание -->
+                        <Border Background="#FFF9E6" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+                            <TextBlock x:Name="WishText"
+                                       FontSize="14"
+                                       TextWrapping="Wrap"
+                                       Foreground="#333"
+                                       TextAlignment="Center"/>
+                        </Border>
+
+                        <!-- Персональное сообщение -->
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BirthdayFromDeveloper]}"
+                                   FontSize="12"
+                                   Foreground="#666"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+
+                        <ItemsControl x:Name="WishesList" ItemsSource="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                                               FontSize="11"
+                                               Foreground="#555"
+                                               Margin="0,2"
+                                               HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+
+                
+                <Button Grid.Row="2"
+                        Content="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[BirthdayButton]}"
+                        Background="Gold"
+                        Foreground="Black"
+                        FontWeight="Bold"
+                        Padding="20,10"
+                        Margin="0,15,0,0"
+                        Click="CloseButton_Click"
+                        Cursor="Hand"
+                        BorderThickness="0"
+                        CornerRadius="8"
+                        HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

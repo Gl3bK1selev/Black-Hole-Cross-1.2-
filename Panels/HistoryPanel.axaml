@@ -1,0 +1,205 @@
+﻿<UserControl x:Class="Black_Hole_Cross.Panels.HistoryPanel"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:Black_Hole_Cross"
+             xmlns:services="using:Black_Hole_Cross.Services"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#0A0A1A" CornerRadius="15" Padding="25" BoxShadow="0 0 25 0 #9370DB">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <Border Grid.Row="0" Background="Transparent" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox Width="28" Height="28" Margin="0,0,15,0">
+                        <TextBlock Text="📈" Foreground="#9370DB"/>
+                    </Viewbox>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelTitle]}"
+                                  Foreground="#9370DB"
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelSubtitle]}"
+                                  Foreground="#A0A0FF"
+                                  FontSize="10"
+                                  HorizontalAlignment="Center"
+                                  Margin="0,5,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Список будущих функций -->
+            <Border Grid.Row="1" Background="#1A1A2E" CornerRadius="12" Padding="20" BorderThickness="1" BorderBrush="#2A2A4A">
+                <StackPanel>
+                    <!-- Детальная статистика -->
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#9370DB">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="📊" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelStatTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#9370DB"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelStatFuture]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelStatDetails]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Графики производительности -->
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#4050B0">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="📉" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelChartsTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#4050B0"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelChartsFuture]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelChartsDetails]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Журнал событий -->
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#FFD700">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="📋" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelEventsTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#FFD700"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelEventsFuture]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelEventsDetails]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Отчеты о работе -->
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15" Margin="0,0,0,12"
+                           BorderThickness="1" BorderBrush="#00FF88">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="📄" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelReportsTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#00FF88"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelReportsFuture]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelReportsDetails]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Сравнение показателей -->
+                    <Border Background="#2A2A3A" CornerRadius="8" Padding="15"
+                           BorderThickness="1" BorderBrush="#FF6B6B">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="22" Height="22" Margin="0,0,12,0">
+                                <TextBlock Text="⚖️" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelCompareTitle]}"
+                                          FontSize="11"
+                                          FontWeight="Bold"
+                                          Foreground="#FF6B6B"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelCompareFuture]}"
+                                          FontSize="9"
+                                          Foreground="#CCCCCC"
+                                          TextWrapping="Wrap"
+                                          Margin="0,2,0,0"
+                                          FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelCompareDetails]}"
+                                          FontSize="8"
+                                          Foreground="#888888"
+                                          TextWrapping="Wrap"
+                                          Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Нижний текст -->
+            <Border Grid.Row="2" Background="Transparent" Margin="0,15,0,0">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelFooterTitle]}"
+                              Foreground="#A0A0FF"
+                              FontSize="10"
+                              FontWeight="SemiBold"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Source={x:Static services:LocalizationService.Instance}, Path=[HistoryPanelFooterDescription]}"
+                              Foreground="#888888"
+                              FontSize="8"
+                              HorizontalAlignment="Center"
+                              Margin="0,3,0,0"
+                              FontStyle="Italic"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

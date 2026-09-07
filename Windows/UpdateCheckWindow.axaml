@@ -1,0 +1,128 @@
+﻿<Window x:Class="Black_Hole_Cross.UpdateCheckWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:services="clr-namespace:Black_Hole_Cross.Services"
+        Title="О проекте • Black Hole"
+        Height="500" Width="600"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Background="#1A1A2E"
+        x:CompileBindings="False">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static services:LocalizationService.Instance}"/>
+    </Window.DataContext>
+
+    <Grid>
+        <!-- Космический фон -->
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#000000" Offset="0"/>
+                    <GradientStop Color="#0A0A2A" Offset="0.3"/>
+                    <GradientStop Color="#1A1A4A" Offset="0.6"/>
+                    <GradientStop Color="#000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <ScrollViewer>
+            <Border CornerRadius="16" Padding="25" Margin="20" Background="#1A1A2E"
+                    BorderThickness="2" BorderBrush="#4050B0">
+                <StackPanel>
+                    <!-- Заголовок -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20" HorizontalAlignment="Center">
+                        <Border Width="50" Height="50" CornerRadius="25" Background="#4050B0" Margin="0,0,15,0">
+                            <Viewbox Width="25" Height="25">
+                                <TextBlock Text="🚀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="BLACK HOLE MONITOR" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="Версия 1.0 • Первый запуск" Foreground="#A0A0FF" FontSize="10"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Текущая версия -->
+                    <Border Background="#2A2A3A" CornerRadius="12" Padding="20" Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="30" Height="30" Margin="0,0,15,0">
+                                <TextBlock Text="⭐" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <StackPanel>
+                                <TextBlock Text="{Binding [VersionTitle]}" Foreground="#CCCCCC" FontSize="10"/>
+                                <TextBlock Text="{Binding [VersionText]}" Foreground="#00FF88" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding [VersionDescription]}" Foreground="#87CEEB" FontSize="9" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Статус разработки -->
+                    <Border Background="#2A2A3A" CornerRadius="12" Padding="20" Margin="0,0,0,15">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Viewbox Width="20" Height="20" Margin="0,0,10,0">
+                                    <TextBlock Text="{Binding [StatusIcon]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding [StatusTitle]}" Foreground="#FFA500" FontSize="12" FontWeight="Bold"/>
+                            </StackPanel>
+                            <ProgressBar Value="100" Height="8" Margin="0,0,0,10" Background="#404040" Foreground="#00FF88"/>
+                            <TextBlock Text="{Binding [ProgressText]}" Foreground="#00FF88" FontSize="11" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="{Binding [ProgressDetails]}" Foreground="#AAAAAA" FontSize="10" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Что уже работает -->
+                    <Border Background="#2A2A3A" CornerRadius="12" Padding="15" Margin="0,0,0,15" BorderThickness="1" BorderBrush="#40B050">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <TextBlock Text="{Binding [WorkingIcon]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding [WorkingTitle]}" Foreground="#90EE90" FontSize="11" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding [WorkingFeatures]}" Foreground="#CCCCCC" FontSize="9" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Будущие обновления -->
+                    <Border Background="#2A2A3A" CornerRadius="12" Padding="15" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#FFA500">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <TextBlock Text="{Binding [FutureIcon]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding [FutureTitle]}" Foreground="#FFD700" FontSize="11" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding [FuturePlans]}" Foreground="#CCCCCC" FontSize="9" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Информация -->
+                    <Border Background="#2A2A3A" CornerRadius="12" Padding="15" Margin="0,0,0,20" BorderThickness="1" BorderBrush="#87CEEB">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Viewbox Width="16" Height="16" Margin="0,0,8,0">
+                                    <TextBlock Text="{Binding [InfoIcon]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                                <TextBlock Text="{Binding [InfoTitle]}" Foreground="#87CEEB" FontSize="11" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding [InfoText]}" Foreground="#CCCCCC" FontSize="9" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Блок статуса проверки (StatusTextBlock) -->
+                    <Border x:Name="StatusBorder" Background="#2A2A3A" CornerRadius="8" Padding="12" Margin="0,0,0,15" IsVisible="False" BorderThickness="1" BorderBrush="#4050B0">
+                        <TextBlock x:Name="StatusTextBlock" Foreground="#00FF88" FontSize="11" TextAlignment="Center" TextWrapping="Wrap"/>
+                    </Border>
+
+                    <!-- Кнопки -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="CheckUpdateBtn" Content="{Binding [CheckUpdateButton]}" Click="CheckUpdateBtn_Click" Margin="0,0,10,0"/>
+                        <Button x:Name="CloseBtn" Content="{Binding [CloseButton]}" Background="#808080" Margin="10,0,0,0" Click="CloseBtn_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Window>
