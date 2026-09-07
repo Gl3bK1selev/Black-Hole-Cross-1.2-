@@ -3,96 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Hole Cross - Утилита для диагностики ПК</title>
+    <title>Black Hole - System Diagnostic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0d17;
-            --accent: #ff5e00;
-            --accent-hover: #ff7b2e;
-            --text: #f0f0f0;
-            --text-muted: #9ca3af;
+            --text: #ffffff;
+            --muted: #a3a3a3;
+            --border: rgba(255, 255, 255, 0.15);
+            --glass: rgba(255, 255, 255, 0.04);
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 50% 20%, #1a1f35 0%, var(--bg-color) 70%);
+            font-family: 'Inter', sans-serif;
             color: var(--text);
+            background: #000000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* --- ФОН: Космос, мерцающие звезды и кометы --- */
+        body::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+                radial-gradient(1px 1px at 90px 80px, #fff, transparent),
+                radial-gradient(1px 1px at 160px 60px, #fff, transparent),
+                radial-gradient(1px 1px at 230px 110px, #fff, transparent),
+                radial-gradient(2px 2px at 300px 50px, #fff, transparent),
+                radial-gradient(1px 1px at 350px 140px, #fff, transparent),
+                radial-gradient(1px 1px at 420px 90px, #fff, transparent);
+            background-size: 500px 200px;
+            animation: stars 15s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes stars {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 -200px; }
+        }
+
+        /* Эффект кометы */
+        body::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            width: 3px;
+            height: 3px;
+            top: 10%;
+            left: 10%;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px #fff;
+            animation: comet 8s linear infinite;
+        }
+
+        @keyframes comet {
+            0% {
+                transform: translate(0, 0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-500px, 500px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Главный блок --- */
         .container {
             max-width: 700px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
+            transform: translateY(-30px);
         }
 
         h1 {
-            font-size: 3.5rem;
-            letter-spacing: 4px;
-            color: var(--accent);
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 50px;
+        <p class="subtitle">
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
         }
 
+        /* --- Кнопки --- */
         .download-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .btn {
-            display: inline-block;
-            padding: 20px;
-            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 10px;
+            border-radius: 10px;
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #fff;
-            background: var(--accent);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            background: var(--glass);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15));
             transition: all 0.3s ease;
         }
 
         .btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 94, 0, 0.3);
+            border-color: var(--text);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25);
         }
 
-        .btn-win {
-            background: #0078d4;
+        .btn:hover::before {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35));
         }
 
-        .btn-win:hover {
-            background: #1a88e0;
-            box-shadow: 0 10px 20px rgba(0, 120, 212, 0.3);
+        .btn h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
         }
 
-        .btn-linux {
-            background: #f7b32b;
-            color: #1a1f35;
+        .btn span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
-        .btn-linux:hover {
-            background: #ffc555;
-            box-shadow: 0 10px 20px rgba(247, 179, 43, 0.3);
-        }
-
-        .note {
+        <p class="note">
+            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--muted);
             margin-top: 20px;
-            line-height: 1.6;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        .note a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            color: var(--muted);
         }
     </style>
 </head>
@@ -102,13 +201,19 @@
         <p class="subtitle">Cross-Platform System Diagnostic Utility</p>
 
         <div class="download-grid">
-            <a href="https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.2/Black.Hole.Cross.1.2.Windows.zip" target="_blank" class="btn btn-win">⬇️ Скачать для Windows</a>
-            <a href="https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.2/Black.Hole.Cross.1.2.Linux.zip" target="_blank" class="btn btn-linux">⬇️ Скачать для Linux</a>
+            <a href="https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.2/Black.Hole.Cross.1.2.Windows.zip" target="_blank" class="btn">
+                <h3>WIN</h3>
+                <span>Desktop App</span>
+            </a>
+            <a href="https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.2/Black.Hole.Cross.1.2.Linux.zip" target="_blank" class="btn">
+                <h3>LINUX</h3>
+                <span>Portable App</span>
+            </a>
         </div>
 
         <p class="note">
-            Автономная сборка (Self-contained) — работает без установки дополнительных программ.<br>
-            Версия для macOS находится на этапе тестирования.
+            Self-contained builds. No additional installations required.<br>
+            macOS version is currently in testing.
         </p>
     </div>
 </body>
