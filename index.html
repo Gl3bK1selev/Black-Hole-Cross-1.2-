@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hole Cross - Утилита для диагностики ПК</title>
+    <style>
+        :root {
+            --bg-color: #0b0d17;
+            --accent: #ff5e00;
+            --accent-hover: #ff7b2e;
+            --text: #f0f0f0;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 50% 20%, #1a1f35 0%, var(--bg-color) 70%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 700px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 94, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 94, 0, 0.3);
+        }
+
+        .btn-win {
+            background: #0078d4;
+        }
+
+        .btn-win:hover {
+            background: #1a88e0;
+            box-shadow: 0 10px 20px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-linux {
+            background: #f7b32b;
+            color: #1a1f35;
+        }
+
+        .btn-linux:hover {
+            background: #ffc555;
+            box-shadow: 0 10px 20px rgba(247, 179, 43, 0.3);
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BLACK HOLE</h1>
+        <p class="subtitle">Cross-Platform System Diagnostic Utility</p>
+
+        <div class="download-grid">
+            <a href="https://github.com/G13K1s1elev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.0/BlackHoleCross_Windows.exe" target="_blank" class="btn btn-win">⬇️ Скачать для Windows</a>
+            <a href="https://github.com/G13K1s1elev/Black-Hole-Cross-1.2-Windows-/releases/download/v1.0/BlackHoleCross_Linux.zip" target="_blank" class="btn btn-linux">⬇️ Скачать для Linux</a>
+        </div>
+
+        <p class="note">
+            Автономная сборка (Self-contained) — работает без установки дополнительных программ.<br>
+            Версия для macOS находится на этапе тестирования.
+        </p>
+    </div>
+</body>
+</html>
