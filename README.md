@@ -2,7 +2,7 @@
 
 > A convenient desktop utility for monitoring computer health, interacting with system components, and fine-tuning the operating environment.
 
-![App Screenshot](<img width="2560" height="1440" alt="2026-09-11_21-42-01" src="https://github.com/user-attachments/assets/8479febd-5c45-4d1e-b54e-7487d995f10a" />
+![App Screenshot](ScreenshotBlackHole.png
 )
 
 ## 📖 About
