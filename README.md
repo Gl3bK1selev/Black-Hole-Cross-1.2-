@@ -30,6 +30,10 @@ Black Hole Cross is an application that combines diagnostics, resource managemen
 2. Run the `.exe` file (for Windows) or the corresponding file for your OS.
 3. That's it! No additional installations required — the app works right away.
 
+## 📥 Download
+[⬇️ Download for Windows](https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-/releases/download/v1.2/Black.Hole.Cross.1.2.Windows.zip)
+[⬇️ Download for Linux](https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-/releases/download/v1.2/Black.Hole.Cross.1.2.Linux.zip)
+
 ## 🛠️ Tech Stack
 
 - C# / .NET 9
