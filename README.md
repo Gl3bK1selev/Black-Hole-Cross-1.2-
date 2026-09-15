@@ -21,14 +21,23 @@ Black Hole Cross is an application that combines diagnostics, resource managemen
 | Platform | Status |
 |----------|--------|
 | Windows  | ✅ Full support |
-| Linux    | ⚠️ Not tested |
+| Linux    | ⚠️ Tested, but only on distributions Ubuntu, Kali |
 | macOS    | 🔄 In testing |
 
 ## 📥 Installation & Usage
+**Windows**
 
 1. Download the latest version from the [Releases](../../releases) section.
-2. Run the `.exe` file (for Windows) or the corresponding file for your OS.
+2. Run the `.exe` file (for Windows).
 3. That's it! No additional installations required — the app works right away.
+**Linux**
+
+1. Download the Linux version of the application file.
+2. Open a terminal in the folder containing the file.
+3. Make the file executable (this only needs to be done once):
+   `chmod +x Black_Hole_Cross.Desktop`
+4. Launch the application:
+   `./Black_Hole_Cross.Desktop`
 
 ## 📥 Download
 [⬇️ Download for Windows](https://github.com/Gl3bK1selev/Black-Hole-Cross-1.2-/releases/download/v1.2/Black.Hole.Cross.1.2.Windows.zip)
