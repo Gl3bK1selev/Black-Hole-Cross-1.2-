@@ -30,6 +30,7 @@ Black Hole Cross is an application that combines diagnostics, resource managemen
 1. Download the latest version from the [Releases](../../releases) section.
 2. Run the `.exe` file (for Windows).
 3. That's it! No additional installations required — the app works right away.
+
 **Linux**
 
 1. Download the Linux version of the application file.
